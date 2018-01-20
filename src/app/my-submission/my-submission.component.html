@@ -6,10 +6,16 @@
   </div>
 
   <div class="form-label-group">
-    <input type="string" class="form-control" placeholder="Your submission id" required="true" autofocus="true">
-    <label for="inputEmail">Image Identifier</label>
+    <label for="image-id">Image Identifier</label>
+    <input id="image-id" type="string" class="form-control" placeholder="Your submission id" required="true" autofocus="true">
   </div>
 
-  <button class="btn btn-lg btn-primary btn-block" type="submit" routerLink="/my-image">Submit</button>
+  <div class="form-label-group">
+    <label for="image-submission">Image for Submission</label>
+    <input type="file" id="image-submission" class="form-control" placeholder="Your submission id" required="true" autofocus="true" (change)="onFileChange($event)">
+  </div>
+  <div class="form-label-group">
+    <button class="btn btn-lg btn-primary btn-block" type="submit" routerLink="/my-image">Submit</button>
+  </div>
 </form>
 
