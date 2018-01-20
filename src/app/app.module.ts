@@ -8,6 +8,7 @@ import { MyImagesComponent } from './my-images/my-images.component';
 import { ApproveImagesComponent } from './approve-images/approve-images.component';
 import { MyImageComponent } from './my-image/my-image.component';
 import { MySubmissionComponent } from './my-submission/my-submission.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { MySubmissionComponent } from './my-submission/my-submission.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgbModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
