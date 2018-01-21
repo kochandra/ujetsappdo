@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
-import { Image } from '../model/image';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
-
+import { Http, Response } from '@angular/http';
+import { Image } from '../model/image';
+import { SubmittedImage } from '../../admin/model/submittedImage';
+import { environment } from '../../../environments/environment';
 @Injectable()
 export class ImageService {
-  image: Image;
-  constructor() { 
+  image: SubmittedImage;
+  constructor( private http: Http) { 
   }
   
   /**
@@ -28,18 +30,43 @@ export class ImageService {
         } else {
           observable.next(new Image());
           observable.complete();
-        }      
+        }
       }
     });
     return q;
   }
-  getUploadedImage(): Image {
+  getUploadedImage(): SubmittedImage {
+    /**
+     * {
+    params: new HttpParams().set('id', '3'),
+  }
+     */
     return this.image;
   }
-  uploadImage(img: Image): Observable<boolean> {
+  uploadImage(img: Image): Observable<SubmittedImage> {
     //TODO: POST a single image    
     //TODO: filter out data:image/x-icon;base64, from image data
-    this.image = img;
-    return of(true);
+    /*
+    const q = new Observable<SubmittedImage>((observable) => {
+      this.http.post(environment.resourceDirectory.base + '/' + environment.resourceDirectory.image, img).subscribe((response: Response) => {        
+        observable.next(response.json() as SubmittedImage);
+        observable.complete();
+      });
+    });
+    return q;    
+    */
+    this.image = {
+      filename: img.filename,
+      name: img.filename,    
+      id: 9001,
+      emailStatus: 'Sent',
+      approvalStatus: 'Pending',
+      approvalDecisionNotes: '',
+      uploadedDate: '01/21/2018',
+      imageLink: img.data,
+      uniqueCode: img.id
+    };
+
+    return of(this.image);
   }
 }

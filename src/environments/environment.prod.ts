@@ -1,3 +1,7 @@
 export const environment = {
-  production: true
+  production: false,
+  resourceDirectory: {
+    base: 'localhost:8081/api',
+    image: 'AwsS3'
+  }
 };

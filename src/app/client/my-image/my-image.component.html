@@ -5,11 +5,11 @@
   <div class="card-img-top">
     <div class="card-body">
       <div class="card-text">
-        <img alt="Image for Submission" [src]="image.data | imagePlaceholder">
+        <img alt="Image for Submission" [src]="image.imageLink | imagePlaceholder">
       </div>
       <div class="align-items-center">
         <div class="btn-group">
-          <button type="button" [class.active]="!isApproved(image)" class="btn btn-lg btn-outline-secondary" disabled>Delete</button>
+          <button type="button" class="btn btn-lg btn-outline-secondary" disabled>Delete</button>
         </div>
         <!--<small class="text-muted">pending</small>-->
       </div>

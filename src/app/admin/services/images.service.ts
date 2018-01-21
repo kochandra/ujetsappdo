@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
-import { SubmittedImage } from '../model/submittedImage';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
+import { Http, Response } from '@angular/http';
+import { environment } from '../../../environments/environment';
+import { SubmittedImage } from '../model/submittedImage';
 
 const MOCK: Array<SubmittedImage> = [
   {
@@ -124,7 +126,7 @@ export class ImagesService {
     rejected: 'Rejected',
     pending: 'Pending'
   };
-  constructor() {
+  constructor(private http: Http) {
     this.images = MOCK;
   }
 
@@ -133,7 +135,14 @@ export class ImagesService {
       return of(this.images);
     } else {
       //TODO: get the images    
-      return [] as any;
+      const q = new Observable<Array<SubmittedImage>>((observable) => {
+        this.http.get(environment.resourceDirectory.base + '/' + environment.resourceDirectory.image).subscribe((response: Response) => {  
+          this.images = response.json() as Array<SubmittedImage>;
+          observable.next(this.images);
+          observable.complete();
+        });
+      });
+      return q;           
     }
   }
   approveImage(img: SubmittedImage): SubmittedImage {
@@ -157,7 +166,16 @@ export class ImagesService {
     return img.approvalStatus === this.APPROVAL_STATUS.pending;
   }
   updateImageByUniqueCode(code: string, img: SubmittedImage): Observable<boolean> {
-    //TODO: POST decision
+    //TODO: PUT decision
+    /*
+    const q = new Observable<boolean>((observable) => {
+      this.http.put(environment.resourceDirectory.base + '/' + environment.resourceDirectory.image + '/' + img.id, img).subscribe((response: Response) => {        
+        observable.next(response.ok);
+        observable.complete();
+      });
+    });
+    return q;       
+    */
     let index: number = this.images.findIndex((img) => {
       return img.uniqueCode === code;
     });
