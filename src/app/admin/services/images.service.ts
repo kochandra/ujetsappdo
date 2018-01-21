@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
-import { Http, Response } from '@angular/http';
+import { Response } from '@angular/http';
+import {HttpClientModule, HttpClient} from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { SubmittedImage } from '../model/submittedImage';
 
@@ -126,7 +127,7 @@ export class ImagesService {
     rejected: 'Rejected',
     pending: 'Pending'
   };
-  constructor(private http: Http) {
+  constructor(private http: HttpClient) {
     this.images = MOCK;
   }
 

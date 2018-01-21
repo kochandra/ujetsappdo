@@ -1,14 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
-import { Http, Response } from '@angular/http';
+import { Response } from '@angular/http';
+import {HttpClientModule, HttpClient} from '@angular/common/http';
 import { Image } from '../model/image';
 import { SubmittedImage } from '../../admin/model/submittedImage';
 import { environment } from '../../../environments/environment';
+
 @Injectable()
 export class ImageService {
   image: SubmittedImage;
-  constructor( private http: Http) { 
+  constructor( private http: HttpClient) { 
   }
   
   /**
