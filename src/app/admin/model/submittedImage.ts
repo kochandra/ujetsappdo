@@ -5,6 +5,7 @@ export class SubmittedImage {
     imageLink: string;
     uniqueCode: string;
     filename: string;
+    name: string;
     approvalStatus: string; //Possible values : ["Pending", "Approved", "Rejected"]
     approvalDecisionNotes: string;
     uploadedDate: string;

@@ -6,6 +6,7 @@ import { of } from 'rxjs/observable/of';
 const MOCK: Array<SubmittedImage> = [
   {
     filename: 'aaa.jpg',
+    name: 'aaa',    
     id: 0,
     emailStatus: 'Sent',
     approvalStatus: 'Rejected',
@@ -16,6 +17,7 @@ const MOCK: Array<SubmittedImage> = [
   },
   {
     filename: 'bbb.jpg',
+    name: 'bbb',    
     id: 1,
     emailStatus: 'Sent',
     approvalStatus: 'Pending',
@@ -26,6 +28,7 @@ const MOCK: Array<SubmittedImage> = [
   },
   {
     filename: 'ccc.jpg',
+    name: 'ccc',    
     id: 2,
     emailStatus: 'Sent',
     approvalStatus: 'Approved',
@@ -36,6 +39,7 @@ const MOCK: Array<SubmittedImage> = [
   },
   {
     filename: 'ddd.jpg',
+    name: 'ddd',    
     id: 3,
     emailStatus: 'Sent',
     approvalStatus: 'Approved',
@@ -46,6 +50,7 @@ const MOCK: Array<SubmittedImage> = [
   },
   {
     filename: 'eee.jpg',
+    name: 'eee',    
     id: 4,
     emailStatus: 'Sent',
     approvalStatus: 'Pending',
@@ -56,6 +61,7 @@ const MOCK: Array<SubmittedImage> = [
   },
   {
     filename: 'fff.jpg',
+    name: 'fff',    
     id: 5,
     emailStatus: 'Sent',
     approvalStatus: 'Rejected',
@@ -66,6 +72,7 @@ const MOCK: Array<SubmittedImage> = [
   },
   {
     filename: 'ggg.jpg',
+    name: 'ggg',    
     id: 6,
     emailStatus: 'Sent',
     approvalStatus: 'Pending',
@@ -76,6 +83,7 @@ const MOCK: Array<SubmittedImage> = [
   },
   {
     filename: 'hhh.jpg',
+    name: 'hhh',    
     id: 7,
     emailStatus: 'Sent',
     approvalStatus: 'Approved',
@@ -86,6 +94,7 @@ const MOCK: Array<SubmittedImage> = [
   },
   {
     filename: 'iii.jpg',
+    name: 'iii',    
     id: 8,
     emailStatus: 'Sent',
     approvalStatus: 'Pending',
@@ -95,7 +104,8 @@ const MOCK: Array<SubmittedImage> = [
     uniqueCode: 'ex-asdfasf-xffasasdx'
   },
   {
-    filename: 'kkkk.jpg',
+    filename: 'zzzz.jpg',
+    name: 'zzzz',    
     id: 9,
     emailStatus: 'Sent',
     approvalStatus: 'Rejected',
@@ -103,7 +113,7 @@ const MOCK: Array<SubmittedImage> = [
     uploadedDate: '01/21/2018',
     imageLink: "https://s3.amazonaws.com/ImageUploadTest/Testing_1",
     uniqueCode: 'asdfasdf-asdfasf-xffasasdx'
-  }                   
+  }
 ];
 
 @Injectable()
@@ -116,7 +126,7 @@ export class ImagesService {
   };
   constructor() {
     this.images = MOCK;
-   }
+  }
 
   getImages(): Observable<Array<SubmittedImage>> {
     if (this.images.length > 0) {
@@ -126,23 +136,37 @@ export class ImagesService {
       return [] as any;
     }
   }
-  approveImage(img: SubmittedImage) {
+  approveImage(img: SubmittedImage): SubmittedImage {
+    img.approvalDecisionNotes = 'Image has been approved.';    
     img.approvalStatus = this.APPROVAL_STATUS.approved;
-    //TODO: POST decision
+    return img;
   }
-  rejectImage(img: SubmittedImage) {
+  rejectImage(img: SubmittedImage): SubmittedImage {
+    img.approvalDecisionNotes = 'Image has been rejected.';
     img.approvalStatus = this.APPROVAL_STATUS.rejected;
-    //TODO: POST decision
+    return img;
   }
-  
-  markImageAsPending(img: SubmittedImage) {
+  markImageAsPending(img: SubmittedImage): SubmittedImage {
     img.approvalStatus = this.APPROVAL_STATUS.pending;
+    return img;
   }
-  isImageApproved(img: SubmittedImage) {
+  isImageApproved(img: SubmittedImage): boolean {
     return img.approvalStatus === this.APPROVAL_STATUS.approved;
   }
-  isImagePending(img: SubmittedImage) {
+  isImagePending(img: SubmittedImage): boolean {
     return img.approvalStatus === this.APPROVAL_STATUS.pending;
+  }
+  updateImageByUniqueCode(code: string, img: SubmittedImage): Observable<boolean> {
+    //TODO: POST decision
+    let index: number = this.images.findIndex((img) => {
+      return img.uniqueCode === code;
+    });
+    if (index > -1) {
+      this.images[index] = img;
+      return of(true);
+    } else {
+      return of(false)
+    }
   }
   /**
    * //TODO: unit test this

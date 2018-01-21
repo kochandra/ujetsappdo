@@ -1,26 +1,78 @@
-<form class="form-signin">
+<div class="row">
+  <div class="col-12">
+    <div class="text-center">
+      <!--<img class="mb-4" src="assets/RFI_upload_icon.png" alt="image of image upload" width="72" height="72">-->
+      <h1 class="h3font-weight-normal">Image Review</h1>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-6">
+    <div class="row">
+      <div class="col-12">
+        <div class="card-img-top">
+          <div class="card-body">
+            <div class="card-text">
+              <img alt="Image for Submission" [src]="image.imageLink | imagePlaceholder">
+            </div>
+            <div class="align-items-center">
+              <div class="btn-group">
+                <button type="button" [class.active]="isApproved(image)" class="btn btn-lg btn-outline-secondary" (click)="onImageAdjudication(true)">Approved</button>
+                <button type="button" [class.active]="!isApproved(image)" class="btn btn-lg btn-outline-secondary" (click)="onImageAdjudication(false)">Rejected</button>
+              </div>
 
-  <div class="text-center">
-    <!--<img class="mb-4" src="assets/RFI_upload_icon.png" alt="image of image upload" width="72" height="72">-->
-    <h1 class="h3font-weight-normal">Image Review</h1>
-    <p>You are reviewing an image that was submitted.</p>
+              <!--<small class="text-muted">pending</small>-->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row" *ngIf="!isPending(image) && !isApproved(image)">
+      <div class="col-12">
+        <div class="form-label-group">
+          <label for="rejection-box">Reason for Rejection</label>
+          <textarea id="rejection-box" maxlength="250" [(ngModel)]="image.approvalDecisionNotes"></textarea>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <div class="form-label-group">
-    <img [src]="image.imageLink | imagePlaceholder" />
-  </div>
+  <div class="col-6">
+    <div class="row">
+      <div class="col-12">
+        <div class="form-label-group">
+          <label for="name-box">Name</label>
+          <input type="string" id="name-box" class="form-control" readonly [value]="image.name" />
+        </div>
+      </div>
+    </div>
 
-  <div *ngIf="isPending(image)" class="btn-group">
-    <button type="button" class="btn btn-small btn-outline-secondary" (click)="onImageAdjudication(true)">Approved</button>
-    <button type="button" class="btn btn-small btn-outline-secondary" (click)="onImageAdjudication(false)">Rejected</button>
-  </div>
+    <div class="row">
+      <div class="col-12">
+        <div class="form-label-group">
+          <label for="unique-code-box">Unique Code</label>
+          <input type="string" id="unique-code-box" class="form-control" readonly [value]="image.uniqueCode" />
+        </div>
+      </div>
+    </div>
 
-  <div *ngIf="!isPending(image) && !isApproved(image)">
-    <label for="rejection-box">Reason for Rejection</label>
-    <textarea id="rejection-box"  cols="10" rows="10" maxlength="250" [(value)]="image.approvalDecisionNotes"></textarea>
-  </div>
+    <div class="row">
+      <div class="col-12">
+        <div class="form-label-group">
+          <label for="date-box">Date Submitted</label>
+          <input type="string" id="date-box" class="form-control" readonly [value]="image.uploadedDate" />
+        </div>
+      </div>
+    </div>
 
-  <div *ngIf="!isPending(image)" class="form-label-group">
-    <button class="btn btn-lg btn-primary btn-block" type="submit" routerLink="/my-approvals">Confirm</button>
+    <div class="row" *ngIf="isModelDifferent()">
+      <div class="col-12">
+        <div *ngIf="!isPending(image)" class="btn-group">
+          <button class="btn btn-lg btn-primary btn-outline-secondary" (click)="onImageAdjudicationConfirmation()">Confirm</button>
+          <button class="btn btn-lg btn-warning btn-outline-secondary" routerLink="/my-approvals">Cancel</button>
+        </div>
+      </div>
+    </div>
+
   </div>
-</form>
+</div>

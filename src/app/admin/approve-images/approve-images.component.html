@@ -5,19 +5,19 @@
       <thead>
         <tr>
           <th scope="col">Image</th>
-          <th scope="col">ID</th>          
-          <th scope="col">FileName</th>
-          <th scope="col">Decision</th>
-          <th scope="col">Notification</th>
+          <th scope="col" (click)="onSortFieldNameChange('uniqueCode')">ID</th>          
+          <th scope="col" (click)="onSortFieldNameChange('uploadedDate')">Submitted</th>
+          <th scope="col" (click)="onSortFieldNameChange('name')">Name</th>    
+          <th scope="col" (click)="onSortFieldNameChange('approvalStatus')">Decision</th>                
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let img of images">
+        <tr *ngFor="let img of images | orderBy : sortFieldName">
           <td><img [src]="img.imageLink | imagePlaceholder" [routerLink]="['/my-approval', img.uniqueCode]" /></td>          
           <td >{{img.uniqueCode}}</td>
-          <td>{{img.filename}}</td>
-          <td>{{img.approvalStatus}}</td>
-          <td>{{img.emailStatus}}</td>
+          <td>{{img.uploadedDate}}</td>
+          <td>{{img.name}}</td>
+          <td>{{img.approvalStatus}}</td>          
         </tr>
       </tbody>
     </table>    

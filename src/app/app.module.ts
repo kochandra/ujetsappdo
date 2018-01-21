@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -14,6 +14,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { ImagesService } from './admin/services/images.service';
 import { ImageService } from './client/services/image.service';
 import { ImagePlaceholderPipe } from './admin/pipes/image-placeholder.pipe';
+import { OrderByPipe } from './admin/pipes/order-by.pipe';
 
 
 @NgModule({
@@ -24,12 +25,14 @@ import { ImagePlaceholderPipe } from './admin/pipes/image-placeholder.pipe';
     MySubmissionComponent,
     ImagePreviewComponent,
     ApproveImageComponent,
-    ImagePlaceholderPipe
+    ImagePlaceholderPipe,
+    OrderByPipe
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
+    FormsModule
   ],
   providers: [ImagesService, ImageService],
   bootstrap: [AppComponent]

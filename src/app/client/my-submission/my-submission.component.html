@@ -11,9 +11,9 @@
   </div>
 
   <div class="form-label-group">
-    <label for="image-submission">Image for Submission</label>
-    <input type="file" id="image-submission" class="form-control" placeholder="Your submission id" required="true" autofocus="true" (change)="onFileChange($event)">
-  </div>
+      <label for="image-submission">Image for Submission</label>
+      <input type="file" id="image-submission" class="form-control" placeholder="Your submission id" required="true" autofocus="true" (change)="onFileChange($event)">
+    </div>
 
   <div *ngIf="hasImagePreview"  class="form-label-group">
     <image-preview [model]="image"></image-preview>
