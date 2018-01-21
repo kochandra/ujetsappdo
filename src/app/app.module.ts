@@ -3,16 +3,17 @@ import { NgModule } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
-import { AppRoutingModule } from './/app-routing.module';
-import { ApproveImagesComponent } from './approve-images/approve-images.component';
-import { MyImageComponent } from './my-image/my-image.component';
-import { MySubmissionComponent } from './my-submission/my-submission.component';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import { ImagePreviewComponent } from './image-preview/image-preview.component';
-import { ImagesService } from './services/images.service';
-import { ImageService } from './services/image.service';
-import { ApproveImageComponent } from './approve-image/approve-image.component';
+import { AppRoutingModule } from './app-routing.module';
+import { ApproveImagesComponent } from './admin/approve-images/approve-images.component';
+import { ApproveImageComponent } from './admin/approve-image/approve-image.component';
 
+import { MyImageComponent } from './client/my-image/my-image.component';
+import { MySubmissionComponent } from './client/my-submission/my-submission.component';
+import { ImagePreviewComponent } from './client/image-preview/image-preview.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { ImagesService } from './admin/services/images.service';
+import { ImageService } from './client/services/image.service';
+import { ImagePlaceholderPipe } from './admin/pipes/image-placeholder.pipe';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { ApproveImageComponent } from './approve-image/approve-image.component';
     MyImageComponent,
     MySubmissionComponent,
     ImagePreviewComponent,
-    ApproveImageComponent
+    ApproveImageComponent,
+    ImagePlaceholderPipe
   ],
   imports: [
     BrowserModule,

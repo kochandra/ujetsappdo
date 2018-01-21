@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Image } from '../model/image';
+import { SubmittedImage } from '../model/submittedImage';
 import { ImagesService } from '../services/images.service';
+import { ImagePlaceholderPipe } from '../pipes/image-placeholder.pipe';
 
 @Component({
   selector: 'app-approve-images',
@@ -8,13 +9,13 @@ import { ImagesService } from '../services/images.service';
   styleUrls: ['./approve-images.component.scss']
 })
 export class ApproveImagesComponent implements OnInit {
-  images: Array<Image>;
+  images: Array<SubmittedImage>;
   constructor(private imagesService: ImagesService) {
     this.images = [];
    }
 
   ngOnInit() {
-    this.imagesService.getImages().subscribe((imgs: Array<Image>) => {
+    this.imagesService.getImages().subscribe((imgs: Array<SubmittedImage>) => {
       this.images = imgs;
     });
   }

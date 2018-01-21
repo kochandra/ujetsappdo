@@ -7,13 +7,17 @@
           <th scope="col">Image</th>
           <th scope="col">ID</th>          
           <th scope="col">FileName</th>
+          <th scope="col">Decision</th>
+          <th scope="col">Notification</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let img of images">
-          <td><image-preview [model]="img" routerLink="/my-approval"></image-preview></td>          
-          <td >{{img.id}}</td>
+          <td><img [src]="img.imageLink | imagePlaceholder" [routerLink]="['/my-approval', img.uniqueCode]" /></td>          
+          <td >{{img.uniqueCode}}</td>
           <td>{{img.filename}}</td>
+          <td>{{img.approvalStatus}}</td>
+          <td>{{img.emailStatus}}</td>
         </tr>
       </tbody>
     </table>    
