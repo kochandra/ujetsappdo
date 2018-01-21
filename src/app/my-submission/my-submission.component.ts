@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
+import { ImagePreviewComponent } from '../image-preview/image-preview.component';
+import { Image } from '../model/image';
 
 @Component({
   selector: 'app-my-submission',
@@ -7,8 +9,11 @@ import { Location } from '@angular/common';
   styleUrls: ['./my-submission.component.scss']
 })
 export class MySubmissionComponent implements OnInit {
-
-  constructor(private location: Location) { }
+  image: Image;
+  hasImagePreview: boolean;
+  constructor(private location: Location) {
+    this.hasImagePreview = false;
+   }
 
   ngOnInit() {
     //this.location.go('/my-image');
@@ -20,10 +25,18 @@ export class MySubmissionComponent implements OnInit {
       let file = e.target.files[0];
       reader.readAsDataURL(file);
       reader.onload = (fResults: any) => {
-        console.log(file.name); //TESTING!!!
-        console.log(file.type); //TESTING!!!
-        console.log(fResults.target.result); //TESTING!!!
-        console.log(reader.result); //TESTING!!!
+        if ((file.type as string).indexOf('image') > -1) {
+          this.image = new Image();
+          this.image.filename = file.name;
+          this.image.id = new Date().getTime().toString();
+          this.image.data = reader.result
+          this.hasImagePreview = true;
+          //          console.log(fResults.target.result); //TESTING!!!
+        } else {
+          console.log('cannot upload this file');
+          this.hasImagePreview = false;
+          this.image = new Image();
+        }
       };
     }    
   }
