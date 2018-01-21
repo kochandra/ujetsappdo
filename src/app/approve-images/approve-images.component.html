@@ -1,3 +1,22 @@
-<p>
-  approve-images works!
-</p>
+<div class="row">
+  <div class="col-12 table-scroll">
+    <!-- show a table of results -->
+    <table class="table" *ngIf="images.length > 0">
+      <thead>
+        <tr>
+          <th scope="col">Image</th>
+          <th scope="col">ID</th>          
+          <th scope="col">FileName</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let img of images">
+          <td><image-preview [model]="img"></image-preview></td>          
+          <td >{{img.id}}</td>
+          <td>{{img.filename}}</td>
+        </tr>
+      </tbody>
+    </table>    
+    <span *ngIf="images.length === 0">You currently have no images to review.</span>
+  </div>
+</div>

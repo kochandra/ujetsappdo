@@ -9,6 +9,9 @@ import { MyImageComponent } from './my-image/my-image.component';
 import { MySubmissionComponent } from './my-submission/my-submission.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { ImagePreviewComponent } from './image-preview/image-preview.component';
+import { ImagesService } from './services/images.service';
+import { ImageService } from './services/image.service';
+
 
 
 @NgModule({
@@ -24,7 +27,7 @@ import { ImagePreviewComponent } from './image-preview/image-preview.component';
     AppRoutingModule,
     NgbModule.forRoot()
   ],
-  providers: [],
+  providers: [ImagesService, ImageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
