@@ -1,6 +1,6 @@
 <form class="form-signin">
   <div class="text-center">
-    <img class="mb-4" src="assets/RFI_upload_icon.png" alt="image of image upload" width="72" height="72">
+    <!--<img class="mb-4" src="assets/RFI_upload_icon.png" alt="image of image upload" width="72" height="72">-->
     <h1 class="h3font-weight-normal">Image Submission</h1>
     <p>You are about to submit an image for review.</p>
   </div>
@@ -18,7 +18,7 @@
   <div *ngIf="hasImagePreview"  class="form-label-group">
     <image-preview [model]="image"></image-preview>
   </div>
-  
+
   <div class="form-label-group">
     <button class="btn btn-lg btn-primary btn-block" type="submit" routerLink="/my-image">Submit</button>
   </div>
