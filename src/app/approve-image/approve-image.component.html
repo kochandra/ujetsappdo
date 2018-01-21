@@ -1,0 +1,26 @@
+<form class="form-signin">
+
+  <div class="text-center">
+    <!--<img class="mb-4" src="assets/RFI_upload_icon.png" alt="image of image upload" width="72" height="72">-->
+    <h1 class="h3font-weight-normal">Image Review</h1>
+    <p>You are reviewing an image that was submitted.</p>
+  </div>
+
+  <div class="form-label-group">
+    <image-preview [model]="image"></image-preview>
+  </div>
+
+  <div *ngIf="image.isPending" class="btn-group">
+    <button type="button" class="btn btn-small btn-outline-secondary" (click)="onImageAdjudication(true)">Approved</button>
+    <button type="button" class="btn btn-small btn-outline-secondary" (click)="onImageAdjudication(false)">Rejected</button>
+  </div>
+
+  <div *ngIf="!image.isPending && !image.isApproved">
+    <label for="rejection-box">Reason for Rejection</label>
+    <textarea id="rejection-box" cols="10" rows="10" maxlength="250" [(value)]="image.rejectionReason"></textarea>
+  </div>
+
+  <div *ngIf="!image.isPending" class="form-label-group">
+    <button class="btn btn-lg btn-primary btn-block" type="submit" routerLink="/my-approvals">Confirm</button>
+  </div>
+</form>

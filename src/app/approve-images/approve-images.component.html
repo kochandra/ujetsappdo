@@ -11,7 +11,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let img of images">
-          <td><image-preview [model]="img"></image-preview></td>          
+          <td><image-preview [model]="img" routerLink="/my-approval"></image-preview></td>          
           <td >{{img.id}}</td>
           <td>{{img.filename}}</td>
         </tr>

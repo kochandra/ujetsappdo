@@ -11,6 +11,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { ImagePreviewComponent } from './image-preview/image-preview.component';
 import { ImagesService } from './services/images.service';
 import { ImageService } from './services/image.service';
+import { ApproveImageComponent } from './approve-image/approve-image.component';
 
 
 
@@ -20,7 +21,8 @@ import { ImageService } from './services/image.service';
     ApproveImagesComponent,
     MyImageComponent,
     MySubmissionComponent,
-    ImagePreviewComponent
+    ImagePreviewComponent,
+    ApproveImageComponent
   ],
   imports: [
     BrowserModule,
