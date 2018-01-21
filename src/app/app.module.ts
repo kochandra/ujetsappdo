@@ -9,7 +9,6 @@ import { ApproveImageComponent } from './admin/approve-image/approve-image.compo
 
 import { MyImageComponent } from './client/my-image/my-image.component';
 import { MySubmissionComponent } from './client/my-submission/my-submission.component';
-import { ImagePreviewComponent } from './client/image-preview/image-preview.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { ImagesService } from './admin/services/images.service';
 import { ImageService } from './client/services/image.service';
@@ -23,7 +22,6 @@ import { OrderByPipe } from './admin/pipes/order-by.pipe';
     ApproveImagesComponent,
     MyImageComponent,
     MySubmissionComponent,
-    ImagePreviewComponent,
     ApproveImageComponent,
     ImagePlaceholderPipe,
     OrderByPipe

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Location } from '@angular/common';
-import { ImagePreviewComponent } from '../image-preview/image-preview.component';
+
+import { Router } from '@angular/router';
 import { Image } from '../model/image';
+import { ImageService } from '../services/image.service';
 
 @Component({
   selector: 'app-my-submission',
@@ -11,33 +12,44 @@ import { Image } from '../model/image';
 export class MySubmissionComponent implements OnInit {
   image: Image;
   hasImagePreview: boolean;
-  constructor(private location: Location) {
-    this.hasImagePreview = false;
+  hasUserInput: boolean;
+  constructor(private router: Router, private imageService: ImageService) {
+    this.image = new Image();
+    this.hasUserInput = false;
    }
 
   ngOnInit() {
-    //this.location.go('/my-image');
+
   }
 
+  isFormValid(): boolean {
+    return  this.hasUserInput && this.hasValidUniqueImageCode() && this.hasValidImage();
+  }
+  hasValidUniqueImageCode() {
+    return !this.hasUserInput || this.image.id.length > 0;
+  }
+  hasValidImage(): boolean {
+    return !this.hasUserInput || this.image.filename.length > 0;
+  }
+  onUniqueImageCodeChange() {
+    this.hasUserInput = true;
+  }  
+  uploadImage(img: Image) {
+    this.imageService.uploadImage(img).subscribe((success) => {
+      if (success)
+        this.router.navigate(['/my-image']);  
+    });
+
+  }
   onFileChange(e: any) {
-    let reader = new FileReader();
+    this.hasUserInput = true;
+    this.image.data = '';
+    this.image.filename = '';
     if(e.target.files && e.target.files.length > 0) {
-      let file = e.target.files[0];
-      reader.readAsDataURL(file);
-      reader.onload = (fResults: any) => {
-        if ((file.type as string).indexOf('image') > -1) {
-          this.image = new Image();
-          this.image.filename = file.name;
-          this.image.id = new Date().getTime().toString();
-          this.image.data = reader.result
-          this.hasImagePreview = true;
-          //          console.log(fResults.target.result); //TESTING!!!
-        } else {
-          console.log('cannot upload this file');
-          this.hasImagePreview = false;
-          this.image = new Image();
-        }
-      };
+      this.imageService.readImage(e).subscribe((img: Image) => {
+        this.image.data = img.data;
+        this.image.filename = img.filename;
+      });
     }    
   }
 }

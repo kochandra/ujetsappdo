@@ -1,19 +1,18 @@
-<div class="row">
-  <div class="col-xs-12">
-      <div class="card-img-top">
-          <img alt="Angular Logo" src="assets/RFI_upload_icon.png">
-          <div class="card-body">
-            <div class="card-text">
-              <image-preview [model]="image"></image-preview>
-            </div>
-            <div class="d-flex justify-content-between align-items-center">
-              <div class="btn-group">
-                <button type="button" class="btn btn-small btn-outline-secondary">Update</button>
-                <button type="button" class="btn btn-small btn-outline-secondary">Remove</button>
-              </div>
-              <small class="text-muted">9 mins ago</small>
-            </div>
-          </div>
+<div class="jumbotron">
+  <h1 class="display-4">Success!</h1>
+  <p class="lead">You have successfully submitted your image for review. Please allow 90 days before making any inquiries.</p>
+  <hr class="my-4">
+  <div class="card-img-top">
+    <div class="card-body">
+      <div class="card-text">
+        <img alt="Image for Submission" [src]="image.data | imagePlaceholder">
+      </div>
+      <div class="align-items-center">
+        <div class="btn-group">
+          <button type="button" [class.active]="!isApproved(image)" class="btn btn-lg btn-outline-secondary" disabled>Delete</button>
         </div>
+        <!--<small class="text-muted">pending</small>-->
+      </div>
+    </div>
   </div>
 </div>

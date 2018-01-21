@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ImagePreviewComponent } from '../image-preview/image-preview.component';
+import { ImageService } from '../services/image.service';
 import { Image } from '../model/image';
 
 /**
@@ -11,10 +11,13 @@ import { Image } from '../model/image';
   styleUrls: ['./my-image.component.scss']
 })
 export class MyImageComponent implements OnInit {
-  @Input() image: Image;
-  constructor() { }
+  image: Image;
+  constructor(private imageService: ImageService) {
+    
+   }
 
   ngOnInit() {
+    this.image = this.imageService.getUploadedImage();
   }
 
 }

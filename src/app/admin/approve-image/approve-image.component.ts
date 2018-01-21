@@ -46,7 +46,7 @@ export class ApproveImageComponent implements OnInit {
   onImageAdjudicationConfirmation() {
     this.imagesService.updateImageByUniqueCode(this.code, this.image).subscribe((success) => {
       if (success)
-        this.router.navigate(['/my-approvals']);
+      this.router.navigate(['/my-approvals']);
       //TODO: show error message if success false 
     });
   }
