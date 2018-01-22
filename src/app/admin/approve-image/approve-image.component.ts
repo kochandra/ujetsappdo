@@ -3,6 +3,7 @@ import { SubmittedImage } from '../model/submittedImage';
 import { ImagesService } from '../services/images.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
+import { Title } from '@angular/platform-browser';
 import { ImagePlaceholderPipe } from '../pipes/image-placeholder.pipe';
 
 @Component({
@@ -13,13 +14,14 @@ import { ImagePlaceholderPipe } from '../pipes/image-placeholder.pipe';
 export class ApproveImageComponent implements OnInit {
   image: SubmittedImage; //shallow copy of model from service so that changes can be canceled
   code: string;
-  constructor(private imagesService: ImagesService, private route: ActivatedRoute, private router: Router) {
+  constructor(private imagesService: ImagesService, private route: ActivatedRoute, private router: Router, private titleService: Title) {
     this.image = new SubmittedImage(); //TESTING!!!
   }
 
   ngOnInit() {
     this.code = this.route.snapshot.paramMap.get('uniqueCode');
     this.image = this.getSubmittedImage();
+    this.titleService.setTitle('Image Approval');
   }
   getSubmittedImage(): SubmittedImage {
     return Object.assign({}, this.imagesService.getImageByUniqueCode(this.code));

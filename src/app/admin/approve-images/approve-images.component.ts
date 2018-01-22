@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { SubmittedImage } from '../model/submittedImage';
 import { ImagesService } from '../services/images.service';
 import { ImagePlaceholderPipe } from '../pipes/image-placeholder.pipe';
@@ -12,9 +13,10 @@ import { OrderByPipe } from '../pipes/order-by.pipe';
 export class ApproveImagesComponent implements OnInit {
   images: Array<SubmittedImage>;
   sortFieldName: string;
-  constructor(private imagesService: ImagesService) {
+  constructor(private imagesService: ImagesService, private titleService: Title) {
     this.images = [];
     this.sortFieldName = 'name';
+    this.titleService.setTitle('Admin');
   }
 
   ngOnInit() {

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { Image } from '../model/image';
 import { ImageService } from '../services/image.service';
@@ -13,9 +13,10 @@ export class MySubmissionComponent implements OnInit {
   image: Image;
   hasImagePreview: boolean;
   hasUserInput: boolean;
-  constructor(private router: Router, private imageService: ImageService) {
+  constructor(private router: Router, private imageService: ImageService, private titleService: Title) {
     this.image = new Image();
     this.hasUserInput = false;
+    this.titleService.setTitle('Image Upload');
    }
 
   ngOnInit() {

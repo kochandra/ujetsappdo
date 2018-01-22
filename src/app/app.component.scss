@@ -1,6 +1,18 @@
 .bg-custom {
     background: rgb(0, 51, 102);
+    color: white;
 }
 .has-header {
     padding-top: 10px;
+}
+#title-box {
+    img {
+        width: 75px;
+        height: 75px;
+        margin-right: 10px;
+    }
+    .navbar-float-right {
+        position: absolute;
+        right: 0;        
+    }
 }
