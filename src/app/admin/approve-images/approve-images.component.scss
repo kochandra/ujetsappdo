@@ -1,6 +1,6 @@
 @import '../../../styles.scss';
 .table-scroll {
-    height: calc(100vh - #{$header-height});
+    height: calc(100vh - #{$header-height} - 10px);
     overflow-y: scroll;
 }
 th {
