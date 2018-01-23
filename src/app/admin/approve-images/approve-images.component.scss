@@ -2,6 +2,7 @@
 .table-scroll {
     height: calc(100vh - #{$header-height} - 10px);
     overflow-y: scroll;
+    padding-bottom: $header-height;
 }
 th {
     cursor: pointer;
