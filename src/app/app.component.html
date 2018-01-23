@@ -1,13 +1,13 @@
 <nav id="title-box" class="navbar navbar-expand-md navbar-dark bg-custom">
-  <img src="./src/assets/DHS_SEAL.png" />
+  <img src="./src/assets/unisys_circle_logo.png" />
   <a class="navbar-brand">{{getTitle()}}</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-main" aria-controls="navbar-main"
+  <button class="navbar-toggler" type="button" (click)="headerCollapsed = !headerCollapsed" aria-controls="navbar-main"
     aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
-  <div class="collapse navbar-collapse navbar-float-right" id="navbar-main">
-    <ul class="navbar-nav mr-auto">
+  <div class="collapse navbar-collapse" id="navbar-main"  [ngbCollapse]="headerCollapsed">
+    <ul class="navbar-nav mr-auto navbar-float-right">
       <li class="nav-item">
         <a class="nav-link" routerLink="/my-approvals" routerLinkActive="active">Approvals
           <span class="sr-only" >go to admin screen</span>

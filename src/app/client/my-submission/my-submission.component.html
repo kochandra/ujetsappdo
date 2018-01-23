@@ -1,37 +1,38 @@
-
-<div class="form-row">
-  <div class="col-12">
-    <div class="form-label-group">
-      <label for="image-id">Unique Image Code</label>
-      <input id="image-id" type="text" [class.is-invalid]="!hasValidUniqueImageCode()" class="form-control" placeholder="Your unique image code"
-        required="" autofocus="true" (change)="onUniqueImageCodeChange()" [(ngModel)]="image.id">
-      <div class="invalid-feedback">
-        You must enter a valid unique image code!
+<div id="submission-box" class="form-signin">
+  <div class="row">
+    <div class="col-12">
+      <div class="form-label-group">
+        <label for="image-id">Unique Image Code</label>
+        <input id="image-id" type="text" [class.is-invalid]="!hasValidUniqueImageCode()" class="form-control" placeholder="Your unique image code"
+          required="" autofocus="true" (change)="onUniqueImageCodeChange()" [(ngModel)]="image.id">
+        <div class="invalid-feedback">
+          You must enter a valid unique image code!
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<div class="row">
-  <div class="col-12">
-    <div class="form-label-group">
-      <label for="image-submission">Image for Submission</label>
-      <input type="file" id="image-submission" [class.is-invalid]="!hasValidImage()" class="form-control" placeholder="Upload an image"
-        required="true" autofocus="true" (change)="onFileChange($event)">
-      <div class="invalid-feedback">
-        You must provide a valid Image!
+  <div class="row">
+    <div class="col-12">
+      <div *ngIf="image.data.length > 0" class="form-label-group image-center">
+        <img [src]="image.data" />
+      </div>
+      <div class="form-label-group">
+        <label for="image-submission">Image for Submission</label>
+        <input type="file" id="image-submission" [class.is-invalid]="!hasValidImage()" class="form-control" placeholder="Upload an image"
+          required="true" autofocus="true" (change)="onFileChange($event)">
+        <div class="invalid-feedback">
+          You must provide a valid Image!
+        </div>
       </div>
     </div>
-    <div *ngIf="image.data.length > 0" class="form-label-group">
-      <img [src]="image.data" />
-    </div>
   </div>
-</div>
 
-<div class="row" *ngIf="isFormValid()">
-  <div class="col-12">
-    <div class="form-label-group">
-      <button class="btn btn-lg btn-primary btn-block" type="submit" (click)="uploadImage(image)">Upload</button>
+  <div class="row" *ngIf="isFormValid()">
+    <div class="col-12">
+      <div class="form-label-group">
+        <button class="btn btn-lg btn-primary btn-block" type="submit" (click)="uploadImage(image)">Upload</button>
+      </div>
     </div>
   </div>
 </div>

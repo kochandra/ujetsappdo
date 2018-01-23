@@ -1,3 +1,4 @@
+@import '../styles.scss';
 .bg-custom {
     background: rgb(0, 51, 102);
     color: white;
@@ -7,12 +8,18 @@
 }
 #title-box {
     img {
-        width: 70px;
-        height: 70px;
+        width: 60px;
+        height: 60px;
         margin-right: 10px;
+    }
+    .navbar-collapse.show {
+        height: 100px;
     }
     .navbar-float-right {
         position: absolute;
-        right: 0;        
+        right: 5px;        
     }
+    .clearfix {
+        height: $header-height;
+    }    
 }
