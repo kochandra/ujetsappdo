@@ -1,7 +1,6 @@
 export const environment = {
   production: false,
   resourceDirectory: {
-    base: 'localhost:8081/api',
-    image: 'AwsS3'
+    base: 'http://ujetsimageapi-dev.us-east-2.elasticbeanstalk.com/api/AwsS3/'
   }
 };

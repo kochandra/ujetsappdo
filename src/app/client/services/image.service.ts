@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 import { Response } from '@angular/http';
-import {HttpClientModule, HttpClient} from '@angular/common/http';
+import {HttpClientModule, HttpClient, HttpHeaders } from '@angular/common/http';
+import { Headers, RequestOptions } from '@angular/http';
 import { Image } from '../model/image';
 import { SubmittedImage } from '../../admin/model/submittedImage';
 import { environment } from '../../../environments/environment';
@@ -10,7 +11,7 @@ import { environment } from '../../../environments/environment';
 @Injectable()
 export class ImageService {
   image: SubmittedImage;
-  constructor( private http: HttpClient) { 
+  constructor( private http: HttpClient) {
   }
   
   /**
@@ -38,37 +39,18 @@ export class ImageService {
     return q;
   }
   getUploadedImage(): SubmittedImage {
-    /**
-     * {
-    params: new HttpParams().set('id', '3'),
-  }
-     */
     return this.image;
   }
-  uploadImage(img: Image): Observable<SubmittedImage> {
-    //TODO: POST a single image    
-    //TODO: filter out data:image/x-icon;base64, from image data
-    /*
+  uploadImage(img: Image): Observable<SubmittedImage> {    
+    img.data = img.data.substr('data:image/x-icon;base64,'.length - 2);//filter out  from image data
+    // POST a single image    
     const q = new Observable<SubmittedImage>((observable) => {
-      this.http.post(environment.resourceDirectory.base + '/' + environment.resourceDirectory.image, img).subscribe((response: Response) => {        
-        observable.next(response.json() as SubmittedImage);
+      this.http.post(environment.resourceDirectory.base, img).subscribe((response: SubmittedImage) => {
+        this.image = response;
+        observable.next(this.image);
         observable.complete();
       });
     });
     return q;    
-    */
-    this.image = {
-      filename: img.filename,
-      name: img.filename,    
-      id: 9001,
-      emailStatus: 'Sent',
-      approvalStatus: 'Pending',
-      approvalDecisionNotes: '',
-      uploadedDate: '01/21/2018',
-      imageLink: img.data,
-      uniqueCode: img.id
-    };
-
-    return of(this.image);
   }
 }

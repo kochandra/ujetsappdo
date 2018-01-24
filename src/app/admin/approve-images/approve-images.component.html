@@ -13,7 +13,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let img of images | orderBy : sortFieldName">
-          <td><img [src]="img.imageLink | imagePlaceholder" [routerLink]="['/my-approval', img.uniqueCode]" /></td>          
+          <td><img [src]="img.imageLink | imagePlaceholder" [routerLink]="['/my-approval', img.id]" /></td>          
           <td tabindex="0">{{img.uniqueCode}}</td>
           <td tabindex="0">{{img.uploadedDate}}</td>
           <td tabindex="0">{{img.name}}</td>

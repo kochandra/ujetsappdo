@@ -13,25 +13,25 @@ import { ImagePlaceholderPipe } from '../pipes/image-placeholder.pipe';
 })
 export class ApproveImageComponent implements OnInit {
   image: SubmittedImage; //shallow copy of model from service so that changes can be canceled
-  code: string;
+  id: number;
   constructor(private imagesService: ImagesService, private route: ActivatedRoute, private router: Router, private titleService: Title) {
     this.image = new SubmittedImage(); //TESTING!!!
   }
 
   ngOnInit() {
-    this.code = this.route.snapshot.paramMap.get('uniqueCode');
+    this.id = parseInt(this.route.snapshot.paramMap.get('id'));
     this.image = this.getSubmittedImage();
     this.titleService.setTitle('Image Approval');
   }
   getSubmittedImage(): SubmittedImage {
-    return Object.assign({}, this.imagesService.getImageByUniqueCode(this.code));
+    return Object.assign({}, this.imagesService.getImageById(this.id));
   }
   isModelDifferent() {
     //copy image model so that changes can be confirmed or canceled
     let keys: Array<string> = Object.keys(this.image);
     let dirty = false;
     keys.forEach((key) => {
-      dirty = dirty || (this.imagesService.getImageByUniqueCode(this.code)[key] !== this.image[key]);
+      dirty = dirty || (this.imagesService.getImageById(this.id)[key] !== this.image[key]);
     });
     return dirty;
   }
@@ -46,7 +46,7 @@ export class ApproveImageComponent implements OnInit {
    * This method will trigger a POST using the images service.
    */
   onImageAdjudicationConfirmation() {
-    this.imagesService.updateImageByUniqueCode(this.code, this.image).subscribe((success) => {
+    this.imagesService.updateImage(this.image).subscribe((success) => {
       if (success)
       this.router.navigate(['/my-approvals']);
       //TODO: show error message if success false 

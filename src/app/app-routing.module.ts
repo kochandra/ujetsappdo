@@ -9,9 +9,10 @@ import { ApproveImageComponent } from './admin/approve-image/approve-image.compo
 const routes = [
   {path: '', redirectTo: '/my-submission', pathMatch: 'full'},  
   {path:'my-submission', component: MySubmissionComponent },
+  {path:'my-submission/:uniqueCode', component: MySubmissionComponent },
   {path:'my-image', component: MyImageComponent },
   {path:'my-approvals', component: ApproveImagesComponent},
-  {path:'my-approval/:uniqueCode', component: ApproveImageComponent}  
+  {path:'my-approval/:id', component: ApproveImageComponent}  
 ];
 
 @NgModule({
