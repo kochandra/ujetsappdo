@@ -26,9 +26,12 @@ FROM nginx:1.13.3-alpine
 COPY nginx/nginx.conf /etc/nginx/conf.d/
 
 ## Remove default nginx website
-RUN rm -rf /usr/share/nginx/html/*
+RUN rm -rf /usr/share/nginx/html/* && mkdir -p /usr/share/nginx/html/src/assets
 
 ## From 'builder' stage copy over the artifacts in dist folder to default nginx public folder
 COPY --from=builder /usr/src/cis-image-viewer/dist /usr/share/nginx/html
+
+##copy over assets
+COPY ./src/assets/ /usr/share/nginx/html/src/assets
 
 CMD ["nginx", "-g", "daemon off;"]
