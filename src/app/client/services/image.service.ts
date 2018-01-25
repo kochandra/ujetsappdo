@@ -42,10 +42,14 @@ export class ImageService {
     return this.image;
   }
   uploadImage(img: Image): Observable<SubmittedImage> {    
-    img.data = img.data.substr('data:image/x-icon;base64,'.length - 2);//filter out  from image data
+    let modelCopy: Image = new Image();
+    modelCopy.data = img.data.substr('data:image/x-icon;base64,'.length - 2);//filter out base64 header from image data
+    modelCopy.filename = img.filename;
+    modelCopy.id = img.id;    
+
     // POST a single image    
     const q = new Observable<SubmittedImage>((observable) => {
-      this.http.post(environment.resourceDirectory.base, img).subscribe((response: SubmittedImage) => {
+      this.http.post(environment.resourceDirectory.base, modelCopy).subscribe((response: SubmittedImage) => {
         this.image = response;
         observable.next(this.image);
         observable.complete();
