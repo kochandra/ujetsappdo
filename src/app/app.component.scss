@@ -1,0 +1,25 @@
+@import '../styles.scss';
+.bg-custom {
+    background: rgb(0, 51, 102);
+    color: white;
+}
+.has-header {
+    padding-top: 10px;
+}
+#title-box {
+    img {
+        width: 60px;
+        height: 60px;
+        margin: 0 10px 0 15px;
+    }
+    .navbar-collapse.show {
+        height: $header-height ;
+    }
+    .navbar-float-right {
+        position: absolute;
+        right: 5px;        
+    }
+    .clearfix {
+        height: $header-height;
+    }    
+}

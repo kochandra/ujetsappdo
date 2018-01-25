@@ -1,0 +1,27 @@
+<nav id="title-box" class="navbar navbar-expand-md navbar-dark bg-custom">
+  <img src="./src/assets/unisys_circle_logo.png" />
+  <a class="navbar-brand">{{getTitle()}}</a>
+  <button class="navbar-toggler" type="button" (click)="headerCollapsed = !headerCollapsed" aria-controls="navbar-main"
+    aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbar-main"  [ngbCollapse]="headerCollapsed">
+    <ul class="navbar-nav mr-auto navbar-float-right">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/my-approvals" routerLinkActive="active">Approvals
+          <span class="sr-only" >go to admin screen</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/my-submission" routerLinkActive="active">Upload
+          <span class="sr-only" >go to image upload</span>
+        </a>
+      </li>       
+    </ul>
+  </div>
+</nav>
+
+<div class="container-fluid has-header">
+  <router-outlet><!-- views go here --></router-outlet>
+</div>

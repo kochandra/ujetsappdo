@@ -1,0 +1,26 @@
+<div class="row">
+  <div class="col-12 table-scroll">
+    <!-- show a table of results -->
+    <table class="table" *ngIf="images.length > 0">
+      <thead>
+        <tr>
+          <th scope="col">Image</th>
+          <th scope="col" (click)="onSortFieldNameChange('uniqueCode')">ID</th>          
+          <th scope="col" (click)="onSortFieldNameChange('uploadedDate')">Submitted</th>
+          <th scope="col" (click)="onSortFieldNameChange('name')">Name</th>    
+          <th scope="col" (click)="onSortFieldNameChange('approvalStatus')">Decision</th>                
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let img of images | orderBy : sortFieldName">
+          <td><img [src]="img.imageLink | imagePlaceholder" [routerLink]="['/my-approval', img.id]" /></td>          
+          <td tabindex="0">{{img.uniqueCode}}</td>
+          <td tabindex="0">{{img.uploadedDate}}</td>
+          <td tabindex="0">{{img.name}}</td>
+          <td tabindex="0">{{img.approvalStatus}}</td>          
+        </tr>
+      </tbody>
+    </table>    
+    <span *ngIf="images.length === 0">You currently have no images to review.</span>
+  </div>
+</div>

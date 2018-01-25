@@ -1,0 +1,19 @@
+.row {
+    padding-top: 10px;
+}
+img {
+    width: 200px;
+    height: 200px;
+}
+#submission-box {
+    &.form-signin {
+        width: 100%;
+        font-size: 1.3em;
+        max-width: 420px;
+        padding: 10px;
+        margin: 15vh auto;        
+    }    
+    .image-center {
+        text-align: center;
+    }
+}
