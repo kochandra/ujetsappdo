@@ -50,6 +50,9 @@ export class ImagesService {
   isImageApproved(img: SubmittedImage): boolean {
     return img.approvalStatus === this.APPROVAL_STATUS.approved;
   }
+  isImageRejected(img: SubmittedImage): boolean {
+    return img.approvalStatus === this.APPROVAL_STATUS.rejected;
+  }
   isImagePending(img: SubmittedImage): boolean {
     return img.approvalStatus === this.APPROVAL_STATUS.pending;
   }

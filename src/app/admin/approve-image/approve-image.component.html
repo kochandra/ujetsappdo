@@ -11,7 +11,7 @@
                 <div class="align-items-center">
                   <div class="btn-group">
                     <button type="button" [class.active]="isApproved(image)" class="btn btn-lg btn-outline-secondary" (click)="onImageAdjudication(true)">Approved</button>
-                    <button type="button" [class.active]="!isApproved(image)" class="btn btn-lg btn-outline-secondary" (click)="onImageAdjudication(false)">Rejected</button>
+                    <button type="button" [class.active]="isRejected(image)" class="btn btn-lg btn-outline-secondary" (click)="onImageAdjudication(false)">Rejected</button>
                   </div>
                   <!--<small class="text-muted">pending</small>-->
                 </div>

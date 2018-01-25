@@ -58,4 +58,7 @@ export class ApproveImageComponent implements OnInit {
   isApproved(img: SubmittedImage) {
     return this.imagesService.isImageApproved(img);
   }  
+  isRejected(img: SubmittedImage) {
+    return this.imagesService.isImageRejected(img);
+  }    
 }
