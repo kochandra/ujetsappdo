@@ -6,6 +6,6 @@
 export const environment = {
   production: true,
   resourceDirectory: {
-    base: 'http://localhost:8081/api/AwsS3/'
+    base: 'http://ec2-18-219-2-188.us-east-2.compute.amazonaws.com/api/awss3/'
   }
 };
