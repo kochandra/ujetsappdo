@@ -6,6 +6,6 @@
 export const environment = {
   production: true,
   resourceDirectory: {
-    base: 'http://cis.ujetsapp.com:8080/api/AwsS3/
+    base: 'http://cis.ujetsapp.com:8080/api/AwsS3/'
   }
 };
