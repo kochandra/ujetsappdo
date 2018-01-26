@@ -19,10 +19,10 @@
             </div>
       </div>
     </div>
-    <div class="row" *ngIf="!isPending(image) && !isApproved(image)">
+    <div class="row" *ngIf="!isPending(image)">
       <div class="col-12">
         <div class="form-label-group">
-          <label for="rejection-box">Reason for Rejection</label>
+          <label for="rejection-box">Notes</label>
           <textarea id="rejection-box" maxlength="250" [(ngModel)]="image.approvalDecisionNotes"></textarea>
         </div>
       </div>

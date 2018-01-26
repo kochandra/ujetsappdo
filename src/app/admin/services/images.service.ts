@@ -33,13 +33,11 @@ export class ImagesService {
       return q;           
     }
   }
-  approveImage(img: SubmittedImage): SubmittedImage {
-    img.approvalDecisionNotes = 'Image has been approved.';    
+  approveImage(img: SubmittedImage): SubmittedImage {   
     img.approvalStatus = this.APPROVAL_STATUS.approved;
     return img;
   }
   rejectImage(img: SubmittedImage): SubmittedImage {
-    img.approvalDecisionNotes = 'Image has been rejected.';
     img.approvalStatus = this.APPROVAL_STATUS.rejected;
     return img;
   }

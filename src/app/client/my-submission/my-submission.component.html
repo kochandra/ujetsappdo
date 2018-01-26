@@ -1,12 +1,19 @@
 <div id="submission-box" class="form-signin">
+
   <div class="row">
     <div class="col-12">
       <div class="form-label-group">
-        <label for="image-id">Unique Image Code</label>
-        <input id="image-id" type="text" [class.is-invalid]="!hasValidUniqueImageCode()" class="form-control" placeholder="Your unique image code"
+        <label for="image-id">Unique Code</label>
+        <div class="flavor-text">
+          <p>
+            An email containing a unique code has already been sent to you. You will find the code in the contents of the email that
+            was sent you.
+          </p>
+        </div>
+        <input id="image-id" type="text" [class.is-invalid]="!hasValidUniqueImageCode()" class="form-control" placeholder="Please enter your unique code."
           required="" autofocus="true" (change)="onUniqueImageCodeChange()" [(ngModel)]="image.id">
         <div class="invalid-feedback">
-          You must enter a valid unique image code!
+          You must enter a valid unique code!
         </div>
       </div>
     </div>
@@ -19,7 +26,7 @@
       </div>
       <div class="form-label-group">
         <label for="image-submission">Image for Submission</label>
-        <input type="file" id="image-submission" [class.is-invalid]="!hasValidImage()" class="form-control" placeholder="Upload an image"
+        <input type="file" id="image-submission" [class.is-invalid]="!hasValidImage()" class="form-control" placeholder="Supported image types include *.jpg, *.png, *gif"
           required="true" autofocus="true" (change)="onFileChange($event)">
         <div class="invalid-feedback">
           You must provide a valid Image!
