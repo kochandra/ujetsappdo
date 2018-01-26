@@ -1,6 +1,5 @@
-<<<<<<< HEAD
 
-# cis-image-viewer
+# USCIS JETS Image Capture - Unisys Tech Concept
 
 A tool to submit images. A tool to review and adjudicate submitted images. Angular 5 and Bootstrap 4!
 
@@ -31,6 +30,3 @@ $ docker run --rm -d -p 8080:8080 -p 8081:8081 cis-image-viewer
 The app will be available at http://localhost:8080
 
 You can easily tweak the nginx config in ```nginx/nginx.conf```
-=======
-# ujetsappdo
->>>>>>> 0d0f8ac59a7f4f3238c2e363c2ca29f245b9c3a4
