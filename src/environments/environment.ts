@@ -6,6 +6,6 @@
 export const environment = {
   production: true,
   resourceDirectory: {
-    base: 'http://ec2-18-219-2-188.us-east-2.compute.amazonaws.com/api/awss3/'
+    base: 'http://cis.ujetsapi.com/api/awss3/'
   }
 };
