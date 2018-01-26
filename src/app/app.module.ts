@@ -38,4 +38,5 @@ import { ImageService } from './client/services/image.service';
   providers: [ImagesService, ImageService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { 
+}

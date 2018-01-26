@@ -29,7 +29,7 @@
         <input type="file" id="image-submission" [class.is-invalid]="!hasValidImage()" class="form-control" placeholder="Supported image types include *.jpg, *.png, *gif"
           required="true" autofocus="true" (change)="onFileChange($event)">
         <div class="invalid-feedback">
-          You must provide a valid Image!
+          {{imageErrorMessage}}
         </div>
       </div>
     </div>
