@@ -15,17 +15,17 @@ export class MySubmissionComponent implements OnInit {
   hasUserInput: boolean;
   constructor(private router: Router, private route: ActivatedRoute, private imageService: ImageService, private titleService: Title) {
     this.image = new Image();
-    this.image.id = this.route.snapshot.paramMap.get('uniqueCode') || this.image.id;    
+    this.image.id = this.route.snapshot.paramMap.get('uniqueCode') || this.image.id;
     this.hasUserInput = false;
     this.titleService.setTitle('Image Upload');
-   }
+  }
 
   ngOnInit() {
 
   }
 
   isFormValid(): boolean {
-    return  this.hasUserInput && this.hasValidUniqueImageCode() && this.hasValidImage();
+    return this.hasUserInput && this.hasValidUniqueImageCode() && this.hasValidImage();
   }
   hasValidUniqueImageCode() {
     return !this.hasUserInput || this.image.id.length > 0;
@@ -35,23 +35,22 @@ export class MySubmissionComponent implements OnInit {
   }
   onUniqueImageCodeChange() {
     this.hasUserInput = true;
-  }  
+  }
   uploadImage(img: Image) {
     this.imageService.uploadImage(img).subscribe((success) => {
       if (success)
-        this.router.navigate(['/my-image']);  
+        this.router.navigate(['/my-image']);
     });
-
   }
   onFileChange(e: any) {
     this.hasUserInput = true;
     this.image.data = '';
     this.image.filename = '';
-    if(e.target.files && e.target.files.length > 0) {
+    if (e.target.files && e.target.files.length > 0) {
       this.imageService.readImage(e).subscribe((img: Image) => {
         this.image.data = img.data;
         this.image.filename = img.filename;
       });
-    }    
+    }
   }
 }
