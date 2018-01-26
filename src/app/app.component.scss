@@ -3,10 +3,12 @@
     background: rgb(0, 51, 102);
     color: white;
 }
-.has-header {
-    padding-top: 10px;
-}
+
 #title-box {
+    position: fixed;
+    width: 100vw;
+    top: 0px;
+    z-index: 9999;        
     img {
         width: 60px;
         height: 60px;
@@ -23,4 +25,5 @@
     .clearfix {
         height: $header-height;
     }    
+
 }
