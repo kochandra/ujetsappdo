@@ -21,6 +21,21 @@
         </tr>
       </tbody>
     </table>    
-    <span *ngIf="images.length === 0">You currently have no images to review.</span>
+    <div *ngIf="images.length === 0" class="jumbotron">
+        <h1 class="display-4">All Done!</h1>
+        <p class="lead">You currently have no more images to review.</p>
+        <hr class="my-4">
+        <div class="card-img-top">
+          <div class="card-body">
+
+            <div class="text-center">
+              <div class="btn-group">
+                <button type="button" class="btn btn-lg btn-outline-secondary" (click)="location.reload()">Refresh</button>
+              </div>
+              <!--<small class="text-muted">pending</small>-->
+            </div>
+          </div>
+        </div>
+      </div>    
   </div>
 </div>

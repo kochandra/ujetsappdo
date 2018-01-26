@@ -8,7 +8,7 @@
     <span class="navbar-toggler-icon"></span>
   </button>
 
-  <div class="collapse navbar-collapse" id="navbar-main"  [ngbCollapse]="headerCollapsed">
+  <div class="collapse navbar-collapse" id="navbar-main"  [ngbCollapse]="headerCollapsed" tabindex="0">
     <ul class="navbar-nav mr-auto navbar-float-right">
       <li class="nav-item">
         <a class="nav-link" routerLink="/my-approvals" routerLinkActive="active">Approvals
@@ -24,6 +24,6 @@
   </div>
 </nav>
 
-<div class="container-fluid has-header">
+<div (pointerdown)="headerCollapsed = true" class="container-fluid has-header">
   <router-outlet><!-- views go here --></router-outlet>
 </div>

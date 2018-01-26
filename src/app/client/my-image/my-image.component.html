@@ -1,18 +1,18 @@
 <div class="jumbotron">
-  <h1 class="display-4">Success!</h1>
-  <p class="lead">You have successfully submitted your image for review. Your image will be either approved or rejected based on the approved criteria.</p>
-  <hr class="my-4">
-  <div class="card-img-top">
-    <div class="card-body">
-      <div class="card-text text-center">
-        <img alt="Image for Submission" [src]="image.imageLink | imagePlaceholder">
-      </div>
-      <div class="text-center">
-        <div class="btn-group">
-          <button type="button" class="btn btn-lg btn-outline-secondary" routerLink="/my-submission">Submit Another</button>
+    <h1 class="display-4">Success!</h1>
+    <p class="lead">You have successfully submitted your image for review. Your image will be either approved or rejected based on the approved criteria.</p>
+    <hr class="my-4">
+    <div class="card-img-top">
+      <div class="card-body">
+        <div class="card-text text-center">
+          <img alt="Image for Submission" [src]="image.imageLink | imagePlaceholder">
         </div>
-        <!--<small class="text-muted">pending</small>-->
+        <div class="text-center">
+          <div class="btn-group">
+            <button type="button" class="btn btn-lg btn-outline-secondary" routerLink="/my-submission">Submit Another</button>
+          </div>
+          <!--<small class="text-muted">pending</small>-->
+        </div>
       </div>
     </div>
   </div>
-</div>
