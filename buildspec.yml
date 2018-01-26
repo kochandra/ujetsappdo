@@ -51,7 +51,7 @@ phases:
 
       - echo Writing image definitions file...
 
-      - printf '[{"name":"ujetsapi","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
+      - printf '[{"name":"ujetsapp","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
 
 artifacts:
 
