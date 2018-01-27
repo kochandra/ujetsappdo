@@ -1,6 +1,4 @@
 
-# USCIS JETS Image Capture - Unisys Tech Concept
-
 A tool to submit images. A tool to review and adjudicate submitted images. Angular 5 and Bootstrap 4!
 
 
