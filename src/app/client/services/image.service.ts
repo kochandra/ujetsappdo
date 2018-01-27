@@ -53,7 +53,8 @@ export class ImageService {
   uploadImage(img: Image): Observable<Image | string> {
     this.image = img;    
     let modelCopy: Image = new Image();
-    modelCopy.data = img.data.substr('data:image/x-icon;base64,'.length - 2);//filter out base64 header from image data
+    let based64HeaderRegExp: RegExp = new RegExp('data.*base64,', 'g');
+    modelCopy.data = img.data.replace(based64HeaderRegExp, '');
     modelCopy.filename = img.filename;
     modelCopy.id = img.id;    
 
