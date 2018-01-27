@@ -15,6 +15,7 @@ import { ImagesService } from './admin/services/images.service';
 import { MyImageComponent } from './client/my-image/my-image.component';
 import { MySubmissionComponent } from './client/my-submission/my-submission.component';
 import { ImageService } from './client/services/image.service';
+import { SearchComponent } from './admin/search/search.component';
 
 
 
@@ -26,7 +27,8 @@ import { ImageService } from './client/services/image.service';
     MySubmissionComponent,
     ApproveImageComponent,
     ImagePlaceholderPipe,
-    OrderByPipe
+    OrderByPipe,
+    SearchComponent
   ],
   imports: [
     BrowserModule,

@@ -23,7 +23,7 @@ export class MySubmissionComponent implements OnInit {
     this.hasUserInput = false;
     this.titleService.setTitle('Applicant Information Submission');
     this.imageErrorMessage = 'Please provide an image.';
-    this.codeErrorMessage = 'You must provide a valid code.';
+    this.codeErrorMessage = 'Please provide a valid code.';
     this.submissionFailed = false;
   }
 

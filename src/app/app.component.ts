@@ -16,7 +16,7 @@ export class AppComponent implements OnInit {
 
   }
   showSearchBar(): boolean {
-    return this.router.isActive('/admin', false);
+    return this.router.isActive('/admin-search', false);
   }
   getTitle() {
     return this.titleService.getTitle();

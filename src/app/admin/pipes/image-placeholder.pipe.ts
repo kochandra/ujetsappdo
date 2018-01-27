@@ -9,7 +9,7 @@ export class ImagePlaceholderPipe implements PipeTransform {
     if (value)
       return value;
     else
-      return './src/assets/RFI_upload_icon.png';
+      return './src/assets/unisys_circle_logo.png';
   }
 
 }
