@@ -7,17 +7,17 @@ import { ApproveImagesComponent } from './admin/approve-images/approve-images.co
 import { ApproveImageComponent } from './admin/approve-image/approve-image.component';
 
 const routes = [
-  {path: '', redirectTo: '/my-submission', pathMatch: 'full'},  
-  {path:'my-submission', component: MySubmissionComponent },
-  {path:'my-submission/:uniqueCode', component: MySubmissionComponent },
-  {path:'my-image', component: MyImageComponent },
-  {path:'my-approvals', component: ApproveImagesComponent},
-  {path:'my-approval/:id', component: ApproveImageComponent}  
+  {path: '', redirectTo: '/my-info-submit', pathMatch: 'full'},  
+  {path:'my-info-submit', component: MySubmissionComponent },
+  {path:'my-info-submit/:uniqueCode', component: MySubmissionComponent },
+  {path:'my-info-complete', component: MyImageComponent },
+  {path:'admin', component: ApproveImagesComponent},
+  {path:'admin/:id', component: ApproveImageComponent}  
 ];
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes, {useHash: true})
   ],
   exports: [RouterModule]
 })

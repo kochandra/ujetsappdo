@@ -14,7 +14,7 @@ import { SubmittedImage } from '../../admin/model/submittedImage';
 export class MyImageComponent implements OnInit {
   image: SubmittedImage;
   constructor(private imageService: ImageService, private titleService: Title) {
-    this.titleService.setTitle('My Image');
+    this.titleService.setTitle('Applicant Information Submission');
   }
 
   ngOnInit() {

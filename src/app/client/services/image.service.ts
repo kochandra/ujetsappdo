@@ -24,16 +24,16 @@ export class ImageService {
       let reader = new FileReader();      
       reader.readAsDataURL(file);
       reader.onload = (fResults: any) => {
-        if ((file.type as string).indexOf('image') > -1 && file.size < 15360000) {
+        if ((file.type as string).indexOf('image') > -1 && file.size < 15360000 && this.isFileExtensionSupported(file.name)) {
           let image: Image = new Image();
           image.filename = file.name;
           image.data = reader.result;
           observable.next(image);
           observable.complete();
-        } else if ((file.type as string).indexOf('image') === -1) {
+        } else if ((file.type as string).indexOf('image') === -1 || !this.isFileExtensionSupported(file.name)) {
           observable.next('Supported file types are *.jpg, *.gif, or *.png');
           observable.complete();
-        } else if (file.size >= 15360000) {
+        } else if (file.size >= 15360000 ) {
           observable.next('The maximum file size for upload allowed is 15 MB only.');
           observable.complete();
         } else {
@@ -44,21 +44,26 @@ export class ImageService {
     });
     return q;
   }
+  isFileExtensionSupported(fn: string): boolean {
+    return (fn.indexOf('.png') > -1 || fn.indexOf('.jpg') > -1 ||  fn.indexOf('.gif') > -1)
+  }
   getUploadedImage(): SubmittedImage {
     return this.image;
   }
-  uploadImage(img: Image): Observable<SubmittedImage> {    
+  uploadImage(img: Image): Observable<SubmittedImage | string> {
     let modelCopy: Image = new Image();
     modelCopy.data = img.data.substr('data:image/x-icon;base64,'.length - 2);//filter out base64 header from image data
     modelCopy.filename = img.filename;
     modelCopy.id = img.id;    
 
     // POST a single image    
-    const q = new Observable<SubmittedImage>((observable) => {
+    const q = new Observable<SubmittedImage | string>((observable) => {
       this.http.post(environment.resourceDirectory.base, modelCopy).subscribe((response: SubmittedImage) => {
         this.image = response;
         observable.next(this.image);
         observable.complete();
+      }, (err: any) => {
+        observable.error('You may only use the unique code which can be found in the original email.');        
       });
     });
     return q;    

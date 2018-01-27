@@ -14,12 +14,17 @@ export class MySubmissionComponent implements OnInit {
   hasImagePreview: boolean;
   hasUserInput: boolean;
   imageErrorMessage: string;
+  codeErrorMessage: string;
+  hasError: boolean;
+  submissionFailed: boolean;
   constructor(private router: Router, private route: ActivatedRoute, private imageService: ImageService, private titleService: Title) {
     this.image = new Image();
     this.image.id = this.route.snapshot.paramMap.get('uniqueCode') || this.image.id;
     this.hasUserInput = false;
-    this.titleService.setTitle('Image Upload');
+    this.titleService.setTitle('Applicant Information Submission');
     this.imageErrorMessage = 'Please provide an image.';
+    this.codeErrorMessage = 'You must provide a valid code.';
+    this.submissionFailed = false;
   }
 
   ngOnInit() {
@@ -35,16 +40,17 @@ export class MySubmissionComponent implements OnInit {
   hasValidImage(): boolean {
     return !this.hasUserInput || this.image.filename.length > 0;
   }
-  getImageErrorMessage(): string {
-    return 
-  }
   onUniqueImageCodeChange() {
     this.hasUserInput = true;
   }
   uploadImage(img: Image) {
+    this.submissionFailed = false;
     this.imageService.uploadImage(img).subscribe((success) => {
       if (success)
-        this.router.navigate(['/my-image']);
+        this.router.navigate(['/my-info-complete']);
+    }, (message: string) => {
+      this.codeErrorMessage = message;
+      this.submissionFailed = true;
     });
   }
   onFileChange(e: any) {

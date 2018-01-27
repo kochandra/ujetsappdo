@@ -10,14 +10,15 @@
             was sent you.
           </p>
         </div>
-        <input id="image-id" type="text" [class.is-invalid]="!hasValidUniqueImageCode()" class="form-control" placeholder="Please enter your unique code."
+        <input id="image-id" type="text" [class.is-invalid]="!hasValidUniqueImageCode() || submissionFailed" class="form-control" placeholder="Please enter your unique code."
           required="" autofocus="true" (change)="onUniqueImageCodeChange()" [(ngModel)]="image.id">
         <div class="invalid-feedback">
-          You must enter a valid unique code!
+          {{codeErrorMessage}}
         </div>
       </div>
     </div>
   </div>
+
 
   <div class="row">
     <div class="col-12">
@@ -35,10 +36,10 @@
     </div>
   </div>
 
-  <div class="row" *ngIf="isFormValid()">
+  <div class="row">
     <div class="col-12">
       <div class="form-label-group">
-        <button class="btn btn-lg btn-primary btn-block" type="submit" (click)="uploadImage(image)">Upload</button>
+        <button [disabled]="!isFormValid()" [class.disabled]="!isFormValid()" class="btn btn-lg btn-primary btn-block" type="submit" (click)="uploadImage(image)">Upload</button>
       </div>
     </div>
   </div>
