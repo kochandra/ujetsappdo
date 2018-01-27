@@ -1,13 +1,14 @@
 img {
     height: 275px;
     width: 275px;
+    margin: 10px;
 }
 .search-box {
-    padding-top: 5px;
+    padding-top: 25px;
     .like-google {
         margin: auto;
     }
     input {
-        width: 80vh;
+        width: calc(100vw - 100px);
     }
 }

@@ -4,3 +4,10 @@ $header-height: 80px;
 .has-header {
     padding-top: $header-height;
 }
+body {
+    background-color: whitesmoke;
+    .flavor-text {
+        font-size: 0.7em;
+        color: grey;
+    }    
+}

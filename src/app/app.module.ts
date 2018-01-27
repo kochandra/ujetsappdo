@@ -16,6 +16,7 @@ import { MyImageComponent } from './client/my-image/my-image.component';
 import { MySubmissionComponent } from './client/my-submission/my-submission.component';
 import { ImageService } from './client/services/image.service';
 import { SearchComponent } from './admin/search/search.component';
+import { AutofocusDirective } from './admin/directives/autofocus.directive';
 
 
 
@@ -28,7 +29,8 @@ import { SearchComponent } from './admin/search/search.component';
     ApproveImageComponent,
     ImagePlaceholderPipe,
     OrderByPipe,
-    SearchComponent
+    SearchComponent,
+    AutofocusDirective
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AutofocusDirective } from '../directives/autofocus.directive';
+
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',

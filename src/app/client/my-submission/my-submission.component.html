@@ -5,11 +5,11 @@
       <div class="form-label-group">
         <label for="image-id">Unique Code</label>
         <div class="flavor-text">
-          <p>
-            An email containing a unique code has already been sent to you. You will find the code in the contents of the email that
-            was sent you.
-          </p>
-        </div>
+            <p>
+              An email containing a unique code has already been sent to you. You will find the code in the contents of the email that
+              was sent you.
+            </p>
+          </div>
         <input id="image-id" type="text" [class.is-invalid]="!hasValidUniqueImageCode() || submissionFailed" class="form-control" placeholder="Please enter your unique code."
           required="" autofocus="true" (change)="onUniqueImageCodeChange()" [(ngModel)]="image.id">
         <div class="invalid-feedback">

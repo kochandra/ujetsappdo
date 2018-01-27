@@ -1,13 +1,16 @@
 
   <div class="text-center">
     <img src="./src/assets/unisys_circle_logo.png">
+    <div class="flavor-text">
+        <p>
+          You may search for applicant submissions by entering any qualifying meta-data.
+        </p>
+      </div>    
   </div>
-
 
   <div class="form-inline search-box">
     <div class="like-google">
-        <input class="form-control pull-left" type="text" placeholder="search for a submission" aria-label="Search" [(ngModel)]="query" (keyup.enter)="onSearch(query)">
-        <button class="btn btn-outline-success" type="button"  (click)="onSearch(query)">Search</button>
+        <input class="form-control pull-left" type="text" placeholder="search for a submission" aria-label="Search" [(ngModel)]="query" (keyup.enter)="onSearch(query)" appAutofocus>
     </div>
 
   </div>    

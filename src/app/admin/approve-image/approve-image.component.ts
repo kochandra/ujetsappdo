@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { Title } from '@angular/platform-browser';
 import { ImagePlaceholderPipe } from '../pipes/image-placeholder.pipe';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-approve-image',
@@ -20,18 +21,46 @@ export class ApproveImageComponent implements OnInit {
 
   ngOnInit() {
     this.id = parseInt(this.route.snapshot.paramMap.get('id'));
-    this.image = this.getSubmittedImage();
+    let img: SubmittedImage = this.getSubmittedImage(this.id);
+
+    if (!img) {
+      this.image = new SubmittedImage();
+      this.fetchSubmittedImage(this.id)
+    } else {
+      this.image = img;
+    }
+
     this.titleService.setTitle('Submission Review');
   }
-  getSubmittedImage(): SubmittedImage {
-    return Object.assign({}, this.imagesService.getImageById(this.id));
+  /**
+   * make a network call
+   * //view maintains a copy of model before confirming changes
+   * @param id 
+   */
+  fetchSubmittedImage(id: number) {
+    this.imagesService.getImage(id).subscribe((img: SubmittedImage) => {
+      this.image = Object.assign({}, img); 
+    });;
+  }
+  /**
+   * get image from cache
+   * //view maintains a copy of model before confirming changes
+   * @param id 
+   */
+  getSubmittedImage(id: number): SubmittedImage {
+    let img: SubmittedImage = this.imagesService.findImageById(id);
+    if (img)
+      return Object.assign({}, img);
+    else  
+      return null;
   }
   isModelDifferent() {
     //copy image model so that changes can be confirmed or canceled
     let keys: Array<string> = Object.keys(this.image);
+    let imgInService: SubmittedImage = this.imagesService.findImageById(this.id);    
     let dirty = false;
     keys.forEach((key) => {
-      dirty = dirty || (this.imagesService.getImageById(this.id)[key] !== this.image[key]);
+      dirty = dirty || (imgInService && imgInService[key] !== this.image[key]);
     });
     return dirty;
   }
