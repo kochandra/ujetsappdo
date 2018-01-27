@@ -5,7 +5,8 @@
       <thead>
         <tr>
           <th scope="col">Image</th>
-          <th scope="col" (click)="onSortFieldNameChange('uniqueCode')">ID</th>          
+          <th scope="col" (click)="onSortFieldNameChange('uniqueCode')">ID</th>         
+          <th scope="col" (click)="onSortFieldNameChange('uploadedDate')">Email Status</th>
           <th scope="col" (click)="onSortFieldNameChange('uploadedDate')">Submitted</th>
           <th scope="col" (click)="onSortFieldNameChange('name')">Name</th>    
           <th scope="col" (click)="onSortFieldNameChange('approvalStatus')">Decision</th>                
@@ -15,6 +16,7 @@
         <tr *ngFor="let img of images | orderBy : sortFieldName">
           <td><img [src]="img.imageLink | imagePlaceholder" [routerLink]="['/admin-search', img.id]" /></td>          
           <td tabindex="0">{{img.uniqueCode}}</td>
+          <td tabindex="0">{{img.emailStatus}}</td>
           <td tabindex="0">{{img.uploadedDate}}</td>
           <td tabindex="0">{{img.name}}</td>
           <td tabindex="0">{{img.approvalStatus}}</td>          
