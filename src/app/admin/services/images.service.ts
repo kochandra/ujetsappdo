@@ -18,20 +18,19 @@ export class ImagesService {
   constructor(private http: HttpClient) {
   }
 
-  getImages(): Observable<Array<SubmittedImage>> {
-    if (this.images.length > 0) {
-      return of(this.images);
-    } else {
-      //TODO: get the images    
-      const q = new Observable<Array<SubmittedImage>>((observable) => {
-        this.http.get(environment.resourceDirectory.base).subscribe((response: Array<SubmittedImage>) => {  
-          this.images = response;
-          observable.next(this.images);
-          observable.complete();
-        });
+  getImages(query?:string): Observable<Array<SubmittedImage>> {
+    //TODO: get the images    
+    const q = new Observable<Array<SubmittedImage>>((observable) => {
+      let url: string = environment.resourceDirectory.base;
+      query = query || '';
+      url += '?searchString=' + query;
+      this.http.get(url).subscribe((response: Array<SubmittedImage>) => {
+        this.images = response;
+        observable.next(this.images);
+        observable.complete();
       });
-      return q;           
-    }
+    });
+    return q;           
   }
   approveImage(img: SubmittedImage): SubmittedImage {   
     img.approvalStatus = this.APPROVAL_STATUS.approved;

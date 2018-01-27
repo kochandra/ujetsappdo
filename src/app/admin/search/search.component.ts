@@ -6,8 +6,10 @@ import { Title } from '@angular/platform-browser';
   styleUrls: ['./search.component.scss']
 })
 export class SearchComponent implements OnInit {
-
-  constructor(private titleService: Title) { }
+  query: string;
+  constructor(private titleService: Title) {
+    this.query = '';
+   }
 
   ngOnInit() {
     this.titleService.setTitle('Submission Review');

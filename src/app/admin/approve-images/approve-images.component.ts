@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SubmittedImage } from '../model/submittedImage';
 import { ImagesService } from '../services/images.service';
 import { ImagePlaceholderPipe } from '../pipes/image-placeholder.pipe';
@@ -13,16 +14,24 @@ import { OrderByPipe } from '../pipes/order-by.pipe';
 export class ApproveImagesComponent implements OnInit {
   images: Array<SubmittedImage>;
   sortFieldName: string;
-  constructor(private imagesService: ImagesService, private titleService: Title) {
+  query: string;
+  constructor(private imagesService: ImagesService, private titleService: Title, private route: ActivatedRoute, private router: Router) {
     this.images = [];
     this.sortFieldName = 'name';
     this.titleService.setTitle('Submission Review');
+    this.query = '';
   }
 
   ngOnInit() {
-    this.imagesService.getImages().subscribe((imgs: Array<SubmittedImage>) => {
-      this.images = imgs;
-    });
+    this.route
+    .queryParams
+    .subscribe((params) => {
+      this.query = params['q'] || '';
+      this.imagesService.getImages(this.query).subscribe((imgs: Array<SubmittedImage>) => {
+        this.images = imgs;
+      });      
+    });    
+
   }
 
   onSortFieldNameChange(fieldName: string) {

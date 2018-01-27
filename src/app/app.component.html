@@ -11,10 +11,10 @@
 
   <div *ngIf="showSearchBar()" class="collapse navbar-collapse" id="navbar-main"  [ngbCollapse]="headerCollapsed">
     <ul class="navbar-nav mr-auto navbar-float-right">
-      <form class="form-inline">
-        <input class="form-control" type="text" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>      
+      <div class="form-inline">
+        <input class="form-control" type="text" placeholder="Search" aria-label="Search" [(ngModel)]="query">
+        <button class="btn btn-outline-success" type="submit" [routerLink]="['/admin-search']" [queryParams]="{ q: query }">Search</button>
+      </div>
     </ul>
   </div>
 

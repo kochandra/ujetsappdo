@@ -1,17 +1,14 @@
-<form class="form-signin" >
+
   <div class="text-center">
     <img src="./src/assets/unisys_circle_logo.png">
   </div>
 
 
-  <form class="form-inline search-box">
+  <div class="form-inline search-box">
     <div class="like-google">
-        <input class="form-control pull-left" type="text" placeholder="search for an image" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit" routerLink='/admin-search'>Search</button>
+        <input class="form-control pull-left" type="text" placeholder="search for an image" aria-label="Search" [(ngModel)]="query">
+        <button class="btn btn-outline-success" type="submit"  [routerLink]="['/admin-search']" [queryParams]="{ q: query }">Search</button>
     </div>
 
-  </form>    
+  </div>    
 
-
-
-</form>

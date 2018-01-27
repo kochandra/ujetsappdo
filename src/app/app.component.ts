@@ -8,12 +8,18 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class AppComponent implements OnInit {
   headerCollapsed: boolean;
+  query: string;
   constructor(private router: Router, private route: ActivatedRoute, private titleService: Title) {
     titleService.setTitle('Securing your future.');
     this.headerCollapsed = true;
+    this.query = '';
   }
   ngOnInit() {
-
+    this.route
+    .queryParams
+    .subscribe((params) => {
+      this.query = params['q'] || '';  
+    });       
   }
   showSearchBar(): boolean {
     return this.router.isActive('/admin-search', false);
