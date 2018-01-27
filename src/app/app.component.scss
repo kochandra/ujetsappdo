@@ -19,13 +19,17 @@
         height: $header-height ;
     }
     .navbar-float-right {
-        position: absolute;
-        right: 5px;        
+        width: 100%;
+        .form-inline {
+            width: 100%;
+            input {
+                margin-left: auto;
+                margin-right: 5px;
+            }
+        }
     }
     .clearfix {
         height: $header-height;
     }    
-    input {
-        margin-right: 5px;
-    }
+
 }

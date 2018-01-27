@@ -24,6 +24,9 @@ export class AppComponent implements OnInit {
   showSearchBar(): boolean {
     return this.router.isActive('/admin-search', false);
   }
+  onSearch(query: string) {
+    this.router.navigate(['/admin-search'], {queryParams: {q: query}});      
+  }
   getTitle() {
     return this.titleService.getTitle();
   }

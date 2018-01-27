@@ -1,72 +1,59 @@
 <div class="row">
-  <div class="col-6">
-    <div class="row">
-      <div class="col-12">
-          <div class="card-img-top">
-              <div class="card-body">
-                <div class="card-text">
-                  <img alt="Image for Submission" [src]="image.imageLink | imagePlaceholder">
-                </div>
-                <div class="align-items-center">
-                  <div class="btn-group">
-                    <button type="button" [class.active]="isApproved(image)" class="btn btn-lg btn-outline-secondary" (click)="onImageAdjudication(true)">Approved</button>
-                    <button type="button" [class.active]="isRejected(image)" class="btn btn-lg btn-outline-secondary" (click)="onImageAdjudication(false)">Rejected</button>
-                  </div>
-                  <!--<small class="text-muted">pending</small>-->
-                </div>
-              </div>
-            </div>
-      </div>
-    </div>
-    <div class="row" *ngIf="!isPending(image)">
-      <div class="col-12">
-        <div class="form-label-group">
-          <label for="rejection-box">Notes</label>
-          <textarea id="rejection-box" maxlength="250" [(ngModel)]="image.approvalDecisionNotes"></textarea>
-        </div>
-      </div>
-    </div>
-  </div>
 
-  <div class="col-6">
-    <div class="row">
-      <div class="col-12">
-        <div class="form-label-group">
-          <label for="name-box">Name</label>
-          <input type="string" id="name-box" class="form-control" readonly [value]="image.name" />
+  <div class="col-md-6 text-center">
+    <div class="card-img-top">
+      <div class="card-body">
+        <div class="card-text">
+          <img alt="Image for Submission" [src]="image.imageLink | imagePlaceholder">
         </div>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-12">
-        <div class="form-label-group">
-          <label for="unique-code-box">Unique Code</label>
-          <input type="string" id="unique-code-box" class="form-control" readonly [value]="image.uniqueCode" />
-        </div>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-12">
-        <div class="form-label-group">
-          <label for="date-box">Date Submitted</label>
-          <input type="string" id="date-box" class="form-control" readonly [value]="image.uploadedDate" />
-        </div>
-      </div>
-    </div>
-
-    <div class="row" *ngIf="isModelDifferent()">
-      <div class="col-12">
-        <div class="form-label-group">
-          <label for="confirmation-box">Do you wish to save these changes?</label>
-          <div class="btn-group" id="confirmation-box">
-            <button class="btn btn-info" (click)="onImageAdjudicationConfirmation()">Confirm</button>
-            <button class="btn btn-danger" routerLink="/admin-search">Cancel</button>
+        <div class="align-items-center">
+          <div class="btn-group">
+            <button type="button" [class.active]="isApproved(image)" class="btn btn-lg btn-outline-secondary" (click)="onImageAdjudication(true)">Approved</button>
+            <button type="button" [class.active]="isRejected(image)" class="btn btn-lg btn-outline-secondary" (click)="onImageAdjudication(false)">Rejected</button>
           </div>
+          <!--<small class="text-muted">pending</small>-->
         </div>
       </div>
     </div>
-
   </div>
+
+  <div class="col-md-6">
+    <div class="form-label-group">
+      <label for="name-box">Name</label>
+      <input type="string" id="name-box" class="form-control" readonly [value]="image.name" />
+    </div>
+    <div class="form-label-group">
+      <label for="unique-code-box">Unique Code</label>
+      <input type="string" id="unique-code-box" class="form-control" readonly [value]="image.uniqueCode" />
+    </div>
+    <div class="form-label-group">
+      <label for="date-box">Date Submitted</label>
+      <input type="string" id="date-box" class="form-control" readonly [value]="image.uploadedDate" />
+    </div>
+    <div class="form-label-group">
+      <label for="email-box">Email Status</label>
+      <input type="string" id="email-box" class="form-control" readonly [value]="image.emailStatus" />
+    </div>
+    <div class="form-label-group">
+      <label for="addr-box">Address</label>
+      <input type="string" id="addr-box" class="form-control" readonly [value]="image.address" />
+    </div>
+    <div class="form-label-group">
+      <label for="dob-box">Date of Birth</label>
+      <input type="string" id="dob-box" class="form-control" readonly [value]="image.dateOfBirth" />
+    </div>
+
+    <div *ngIf="isModelDifferent()" class="form-label-group">
+      <label for="confirmation-box">Do you wish to save these changes?</label>
+      <div class="btn-group" id="confirmation-box">
+        <button class="btn btn-info" (click)="onImageAdjudicationConfirmation()">Confirm</button>
+        <button class="btn btn-danger" routerLink="/admin-search">Cancel</button>
+      </div>
+    </div>
+    <div class="form-label-group" *ngIf="!isPending(image)">
+        <label for="rejection-box">Notes</label>
+        <textarea id="rejection-box" maxlength="250" [(ngModel)]="image.approvalDecisionNotes"></textarea>
+      </div>    
+  </div>
+
 </div>
