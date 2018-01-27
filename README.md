@@ -7,7 +7,7 @@ A tool to submit images. A tool to review and adjudicate submitted images. Angul
 ```npm install```
 ```npm run start```
 
-#Production Docker container deployment
+# Production Docker container deployment
 
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
