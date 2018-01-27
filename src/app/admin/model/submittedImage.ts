@@ -12,4 +12,6 @@ export class SubmittedImage {
 
     id: number;
     emailStatus: string;
+    address: string;
+    dateOfBirth: string;
 }
