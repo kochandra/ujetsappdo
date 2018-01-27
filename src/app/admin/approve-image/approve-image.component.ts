@@ -21,7 +21,7 @@ export class ApproveImageComponent implements OnInit {
   ngOnInit() {
     this.id = parseInt(this.route.snapshot.paramMap.get('id'));
     this.image = this.getSubmittedImage();
-    this.titleService.setTitle('Applicant Submission Review');
+    this.titleService.setTitle('Submission Review');
   }
   getSubmittedImage(): SubmittedImage {
     return Object.assign({}, this.imagesService.getImageById(this.id));

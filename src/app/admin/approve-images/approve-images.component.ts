@@ -16,7 +16,7 @@ export class ApproveImagesComponent implements OnInit {
   constructor(private imagesService: ImagesService, private titleService: Title) {
     this.images = [];
     this.sortFieldName = 'name';
-    this.titleService.setTitle('Applicant Submission Review');
+    this.titleService.setTitle('Submission Review');
   }
 
   ngOnInit() {
