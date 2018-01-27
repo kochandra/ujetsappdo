@@ -45,8 +45,7 @@ export class MySubmissionComponent implements OnInit {
   }
   uploadImage(img: Image) {
     this.submissionFailed = false;
-    this.imageService.uploadImage(img).subscribe((success) => {
-      if (success)
+    this.imageService.uploadImage(img).subscribe(() => {
         this.router.navigate(['/my-info-complete']);
     }, (message: string) => {
       this.codeErrorMessage = message;

@@ -10,7 +10,7 @@ import { environment } from '../../../environments/environment';
 
 @Injectable()
 export class ImageService {
-  image: SubmittedImage;
+  image: Image;
   constructor( private http: HttpClient) {
   }
   
@@ -47,19 +47,19 @@ export class ImageService {
   isFileExtensionSupported(fn: string): boolean {
     return (fn.indexOf('.png') > -1 || fn.indexOf('.jpg') > -1 ||  fn.indexOf('.gif') > -1)
   }
-  getUploadedImage(): SubmittedImage {
+  getUploadedImage(): Image {
     return this.image;
   }
-  uploadImage(img: Image): Observable<SubmittedImage | string> {
+  uploadImage(img: Image): Observable<Image | string> {
+    this.image = img;    
     let modelCopy: Image = new Image();
     modelCopy.data = img.data.substr('data:image/x-icon;base64,'.length - 2);//filter out base64 header from image data
     modelCopy.filename = img.filename;
     modelCopy.id = img.id;    
 
     // POST a single image    
-    const q = new Observable<SubmittedImage | string>((observable) => {
+    const q = new Observable<Image | string>((observable) => {
       this.http.post(environment.resourceDirectory.base, modelCopy).subscribe((response: SubmittedImage) => {
-        this.image = response;
         observable.next(this.image);
         observable.complete();
       }, (err: any) => {
