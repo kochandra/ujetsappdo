@@ -20,10 +20,10 @@ A tool to submit images. A tool to review and adjudicate submitted images. Angul
 $ docker build -t cis-image-viewer . 
 ```
 
-## Run the container
+## Run the container locally
 
 ```
-$ docker run --rm -d -p 8080:8080 -p 8081:8081 cis-image-viewer
+$ docker run --rm -d -p 8080:8080 cis-image-viewer
 ```
 
 
