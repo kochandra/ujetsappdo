@@ -17,13 +17,13 @@
     <div class="card-img-top">
       <div class="card-body">
         <div class="card-text">
-            <div class="form-label-group" *ngIf="!isPending(image)">
+            <div class="form-label-group">
                 <label for="rejection-box">Notes</label>
                 <textarea id="rejection-box" maxlength="250" [(ngModel)]="image.approvalDecisionNotes"></textarea>
   
               </div>
         </div>
-        <div class="align-items-center" id="adjudication-box">
+        <div class="text-center" id="adjudication-box">
 
           <div class="btn-group">
             <button type="button" [class.active]="isApproved(image)" class="btn btn-lg btn-outline-secondary" (click)="onImageAdjudication(true)">Approved</button>
