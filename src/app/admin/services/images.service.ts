@@ -9,26 +9,37 @@ import { SubmittedImage } from '../model/submittedImage';
 
 @Injectable()
 export class ImagesService {
-  private images: Array<SubmittedImage> = [];
+  private images: Array<SubmittedImage>;
+  /**
+   * query is cached in order to facillitate request caching
+   */
+  private query: string;
   private APPROVAL_STATUS = {
     approved: 'Approved',
     rejected: 'Rejected',
     pending: 'Pending'
   };
   constructor(private http: HttpClient) {
+    this.query;
+    this.images = [];
   }
-
   getImages(query?:string): Observable<Array<SubmittedImage>> {
     //GET the images    
     const q = new Observable<Array<SubmittedImage>>((observable) => {
       let url: string = environment.resourceDirectory.base;
-      query = query || '';
-      url += '?searchString=' + query;
-      this.http.get(url).subscribe((response: Array<SubmittedImage>) => {
-        this.images = response;
+      if (this.isQueryDifferent(query)) {
+        this.query = query;
+        url += '?searchString=' + query;
+        this.http.get(url).subscribe((response: Array<SubmittedImage>) => {
+          this.images = response;
+          observable.next(this.images);
+          observable.complete();
+        });
+      } else { //serve cached response
         observable.next(this.images);
         observable.complete();
-      });
+      }
+
     });
     return q;           
   }
@@ -67,6 +78,9 @@ export class ImagesService {
   isImagePending(img: SubmittedImage): boolean {
     return img.approvalStatus === this.APPROVAL_STATUS.pending;
   }
+  isQueryDifferent(q: string){
+    return this.query !== q;
+  }  
   updateImage(image: SubmittedImage): Observable<boolean> {
     //PUT decision
     const q = new Observable<boolean>((observable) => {
@@ -80,6 +94,9 @@ export class ImagesService {
       });
     });
     return q;       
+  }
+  getImagesInService() {
+    return this.images;
   }
 
   /**

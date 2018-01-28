@@ -25,7 +25,7 @@ export class ApproveImageComponent implements OnInit {
 
     if (!img) {
       this.image = new SubmittedImage();
-      this.fetchSubmittedImage(this.id)
+      this.fetchSubmittedImage(this.id);
     } else {
       this.image = img;
     }

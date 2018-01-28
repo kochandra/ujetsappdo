@@ -20,19 +20,19 @@ export class ApproveImagesComponent implements OnInit {
     this.images = [];
     this.sortFieldName = 'name';
     this.titleService.setTitle('Submission Review');
-    this.query = '';
   }
 
   ngOnInit() {
     this.route
     .queryParams
     .subscribe((params) => {
-      this.query = params['q'] || '';
+      let q: string = params['q'] || ''; //query param
       this.loading = true;
-      this.imagesService.getImages(this.query).subscribe((imgs: Array<SubmittedImage>) => {
+      this.imagesService.getImages(q).subscribe((imgs: Array<SubmittedImage>) => {
+        this.query = q;
         this.loading = false;
         this.images = imgs;
-      });      
+      }); 
     });    
 
   }
