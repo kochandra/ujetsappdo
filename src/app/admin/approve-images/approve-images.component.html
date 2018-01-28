@@ -5,21 +5,25 @@
       <thead>
         <tr>
           <th scope="col">Image</th>
-          <th scope="col" (click)="onSortFieldNameChange('uniqueCode')">ID</th>         
-          <th scope="col" (click)="onSortFieldNameChange('uploadedDate')">Email Status</th>
+          <th scope="col" (click)="onSortFieldNameChange('uniqueCode')">Code</th>         
+          <th scope="col" (click)="onSortFieldNameChange('uploadedDate')">Email</th>
           <th scope="col" (click)="onSortFieldNameChange('uploadedDate')">Submitted</th>
           <th scope="col" (click)="onSortFieldNameChange('name')">Name</th>    
           <th scope="col" (click)="onSortFieldNameChange('approvalStatus')">Decision</th>                
+          <th scope="col" (click)="onSortFieldNameChange('dateOfBirth')">DOB</th>                
+          <th scope="col" (click)="onSortFieldNameChange('address')">Address</th>                
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let img of images | orderBy : sortFieldName">
-          <td><img [src]="img.imageLink | imagePlaceholder" [routerLink]="['/admin-search', img.id]" /></td>          
+        <tr *ngFor="let img of images | orderBy : sortFieldName" [routerLink]="['/admin-search', img.id]">
+          <td><img [src]="img.imageLink | imagePlaceholder"  /></td>          
           <td tabindex="0">{{img.uniqueCode}}</td>
           <td tabindex="0">{{img.emailStatus}}</td>
           <td tabindex="0">{{img.uploadedDate}}</td>
           <td tabindex="0">{{img.name}}</td>
-          <td tabindex="0">{{img.approvalStatus}}</td>          
+          <td tabindex="0">{{img.approvalStatus}}</td>     
+          <td tabindex="0">{{img.dateOfBirth}}</td>
+          <td tabindex="0">{{img.address}}</td>                    
         </tr>
       </tbody>
     </table>    

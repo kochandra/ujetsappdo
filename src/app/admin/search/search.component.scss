@@ -9,6 +9,14 @@ img {
         margin: auto;
     }
     input {
-        width: calc(100vw - 300px);
+        min-width: 300px;
+
     }
+    
 }
+.flavor-text {
+    font-size: 1em;
+    color: grey;
+    max-width: 400px;
+    margin: auto;
+}    

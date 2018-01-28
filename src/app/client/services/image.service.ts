@@ -45,7 +45,8 @@ export class ImageService {
     return q;
   }
   isFileExtensionSupported(fn: string): boolean {
-    return (fn.indexOf('.png') > -1 || fn.indexOf('.jpg') > -1 ||  fn.indexOf('.gif') > -1)
+    fn = fn.toLowerCase();
+    return (fn.indexOf('.png') > -1 || fn.indexOf('.jpg') > -1 ||  fn.indexOf('.gif') > -1);
   }
   getUploadedImage(): Image {
     return this.image;

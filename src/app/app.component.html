@@ -1,7 +1,10 @@
 <nav id="title-box" class="navbar navbar-expand-md navbar-dark bg-custom">
-  <a href="#">
+  <a [routerLink]="['/admin']" *ngIf="showSearchBar()">
     <img src="./src/assets/unisys_logo_sideways.png"  />
   </a>
+  <a [routerLink]="['/my-info-submit']" *ngIf="!showSearchBar()">
+    <img src="./src/assets/unisys_logo_sideways.png"  />
+  </a>  
   <a class="navbar-brand">{{getTitle()}}</a>
 
   <button *ngIf="showSearchBar()" class="navbar-toggler" type="button" (click)="headerCollapsed = !headerCollapsed" aria-controls="navbar-main"

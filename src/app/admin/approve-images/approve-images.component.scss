@@ -3,10 +3,14 @@
     height: calc(100vh - #{$header-height} - 10px);
     overflow-y: scroll;
     padding-bottom: $header-height;
+    th {
+        cursor: pointer;
+    }
+    tr {
+        cursor: pointer;
+    }    
 }
-th {
-    cursor: pointer;
-}
+
 img {
     width: 75px;
     height: 75px;
