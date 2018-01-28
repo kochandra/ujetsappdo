@@ -4,14 +4,30 @@ textarea {
     height: 150px;
 }
 img {
-    max-width: 300px;
-    max-height: 300px;
-    padding: 10px;
+    max-width: 400px;
+    max-height: 400px;
+    padding: 2px;
 }
 #confirmation-box {
     width: 100%;
-    padding-top: 10px;
+    padding-top: 5px;
+}
+#rejection-box {
+    padding-bottom: 2px;
+
+    border-width: 2px;
+
+}
+#adjudication-box {
+    margin: 4px;
 }
 button.close {
     color: red;
+}
+.attr-label {
+    line-height: 2.5;
+    text-align: right;
+}
+.attr-row {
+    padding: 2px;
 }

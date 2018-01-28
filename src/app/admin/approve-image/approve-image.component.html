@@ -2,15 +2,28 @@
   <span>x</span>
 </button>
 <div class="row">
+  <div class="col text-center">
+    <img alt="Image for Submission" [src]="image.imageLink | imagePlaceholder">
+    <div *ngIf="isModelDifferent()" id="confirmation-box">
+        <button class="btn btn-success" (click)="onImageAdjudicationConfirmation()">Save</button>
+        <button class="btn btn-danger" (click)="resetModel()">Cancel</button>
+      </div>    
+  </div>
+</div>
+<div class="row">
 
-  <div class="col-md-6 text-center">
+  <div class="col-md-6 ">
 
     <div class="card-img-top">
       <div class="card-body">
         <div class="card-text">
-          <img alt="Image for Submission" [src]="image.imageLink | imagePlaceholder">
+            <div class="form-label-group" *ngIf="!isPending(image)">
+                <label for="rejection-box">Notes</label>
+                <textarea id="rejection-box" maxlength="250" [(ngModel)]="image.approvalDecisionNotes"></textarea>
+  
+              </div>
         </div>
-        <div class="align-items-center">
+        <div class="align-items-center" id="adjudication-box">
 
           <div class="btn-group">
             <button type="button" [class.active]="isApproved(image)" class="btn btn-lg btn-outline-secondary" (click)="onImageAdjudication(true)">Approved</button>
@@ -21,44 +34,45 @@
         </div>
       </div>
     </div>
-    <div class="form-label-group" *ngIf="!isPending(image)">
-      <label for="rejection-box">Notes</label>
-      <textarea id="rejection-box" maxlength="250" [(ngModel)]="image.approvalDecisionNotes"></textarea>
-      <div *ngIf="isModelDifferent()" id="confirmation-box">
-        <button class="btn btn-success" (click)="onImageAdjudicationConfirmation()">Save</button>
-        <button class="btn btn-danger" (click)="resetModel()">Cancel</button>
-      </div>
-    </div>
+
   </div>
 
   <div class="col-md-6">
-    <div class="form-label-group">
-      <label for="name-box">Name</label>
-      <input type="string" id="name-box" class="form-control" readonly [value]="image.name" />
+    <div class="row attr-row">
+      <div class="col-2 attr-label">Name:</div>
+      <div class="col-10">
+        <input type="string" id="name-box" class="form-control" readonly [value]="image.name" />
+      </div>
     </div>
-    <div class="form-label-group">
-      <label for="unique-code-box">Unique Code</label>
-      <input type="string" id="unique-code-box" class="form-control" readonly [value]="image.uniqueCode" />
+    <div class="row attr-row">
+      <div class="col-2 attr-label">Code:</div>
+      <div class="col-10">
+        <input type="string" id="unique-code-box" class="form-control" readonly [value]="image.uniqueCode" />
+      </div>
     </div>
-    <div class="form-label-group">
-      <label for="date-box">Date Submitted</label>
-      <input type="string" id="date-box" class="form-control" readonly [value]="image.uploadedDate" />
+    <div class="row attr-row">
+      <div class="col-2 attr-label">Submitted:</div>
+      <div class="col-10">
+        <input type="string" id="date-box" class="form-control" readonly [value]="image.uploadedDate" />
+      </div>
     </div>
-    <div class="form-label-group">
-      <label for="email-box">Email Status</label>
-      <input type="string" id="email-box" class="form-control" readonly [value]="image.emailStatus" />
+    <div class="row attr-row">
+      <div class="col-2 attr-label">Email:</div>
+      <div class="col-10">
+        <input type="string" id="email-box" class="form-control" readonly [value]="image.emailStatus" />
+      </div>
     </div>
-    <div class="form-label-group">
-      <label for="addr-box">Address</label>
-      <input type="string" id="addr-box" class="form-control" readonly [value]="image.address" />
+    <div class="row attr-row">
+      <div class="col-2 attr-label">Address:</div>
+      <div class="col-10">
+        <input type="string" id="addr-box" class="form-control" readonly [value]="image.address" />
+      </div>
     </div>
-    <div class="form-label-group">
-      <label for="dob-box">Date of Birth</label>
-      <input type="string" id="dob-box" class="form-control" readonly [value]="image.dateOfBirth" />
+    <div class="row attr-row">
+      <div class="col-2 attr-label">DOB:</div>
+      <div class="col-10">
+        <input type="string" id="dob-box" class="form-control" readonly [value]="image.dateOfBirth" />
+      </div>
     </div>
-
-
-
   </div>
-
 </div>
