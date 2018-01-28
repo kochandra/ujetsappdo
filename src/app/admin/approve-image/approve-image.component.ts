@@ -54,6 +54,9 @@ export class ApproveImageComponent implements OnInit {
     else  
       return null;
   }
+  resetModel() {
+    this.image = this.getSubmittedImage(this.id);
+  }
   isModelDifferent() {
     //copy image model so that changes can be confirmed or canceled
     let keys: Array<string> = Object.keys(this.image);

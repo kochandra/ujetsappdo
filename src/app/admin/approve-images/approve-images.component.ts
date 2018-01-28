@@ -15,6 +15,7 @@ export class ApproveImagesComponent implements OnInit {
   images: Array<SubmittedImage>;
   sortFieldName: string;
   query: string;
+  loading: boolean;
   constructor(private imagesService: ImagesService, private titleService: Title, private route: ActivatedRoute, private router: Router) {
     this.images = [];
     this.sortFieldName = 'name';
@@ -27,13 +28,20 @@ export class ApproveImagesComponent implements OnInit {
     .queryParams
     .subscribe((params) => {
       this.query = params['q'] || '';
+      this.loading = true;
       this.imagesService.getImages(this.query).subscribe((imgs: Array<SubmittedImage>) => {
+        this.loading = false;
         this.images = imgs;
       });      
     });    
 
   }
-
+  isApproved(img: SubmittedImage) {
+    return this.imagesService.isImageApproved(img);
+  }  
+  isRejected(img: SubmittedImage) {
+    return this.imagesService.isImageRejected(img);
+  }    
   onSortFieldNameChange(fieldName: string) {
     if (this.sortFieldName === fieldName)
       this.sortFieldName = '!' + fieldName;

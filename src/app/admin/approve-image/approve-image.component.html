@@ -1,18 +1,32 @@
+<button type="button" class="close" aria-label="Close" placement="left" ngbTooltip="close without saving" routerLink="/admin-search">
+  <span>x</span>
+</button>
 <div class="row">
 
   <div class="col-md-6 text-center">
+
     <div class="card-img-top">
       <div class="card-body">
         <div class="card-text">
           <img alt="Image for Submission" [src]="image.imageLink | imagePlaceholder">
         </div>
         <div class="align-items-center">
+
           <div class="btn-group">
             <button type="button" [class.active]="isApproved(image)" class="btn btn-lg btn-outline-secondary" (click)="onImageAdjudication(true)">Approved</button>
             <button type="button" [class.active]="isRejected(image)" class="btn btn-lg btn-outline-secondary" (click)="onImageAdjudication(false)">Rejected</button>
           </div>
+
           <!--<small class="text-muted">pending</small>-->
         </div>
+      </div>
+    </div>
+    <div class="form-label-group" *ngIf="!isPending(image)">
+      <label for="rejection-box">Notes</label>
+      <textarea id="rejection-box" maxlength="250" [(ngModel)]="image.approvalDecisionNotes"></textarea>
+      <div *ngIf="isModelDifferent()" id="confirmation-box">
+        <button class="btn btn-success" (click)="onImageAdjudicationConfirmation()">Save</button>
+        <button class="btn btn-danger" (click)="resetModel()">Cancel</button>
       </div>
     </div>
   </div>
@@ -43,17 +57,8 @@
       <input type="string" id="dob-box" class="form-control" readonly [value]="image.dateOfBirth" />
     </div>
 
-    <div *ngIf="isModelDifferent()" class="form-label-group">
-      <label for="confirmation-box">Do you wish to save these changes?</label>
-      <div class="btn-group" id="confirmation-box">
-        <button class="btn btn-success" (click)="onImageAdjudicationConfirmation()">Confirm</button>
-        <button class="btn btn-danger" routerLink="/admin-search">Cancel</button>
-      </div>
-    </div>
-    <div class="form-label-group" *ngIf="!isPending(image)">
-        <label for="rejection-box">Notes</label>
-        <textarea id="rejection-box" maxlength="250" [(ngModel)]="image.approvalDecisionNotes"></textarea>
-      </div>    
+
+
   </div>
 
 </div>

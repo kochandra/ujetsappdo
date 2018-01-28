@@ -17,17 +17,24 @@
       <tbody>
         <tr *ngFor="let img of images | orderBy : sortFieldName" [routerLink]="['/admin-search', img.id]">
           <td><img [src]="img.imageLink | imagePlaceholder"  /></td>          
-          <td tabindex="0">{{img.uniqueCode}}</td>
-          <td tabindex="0">{{img.emailStatus}}</td>
-          <td tabindex="0">{{img.uploadedDate}}</td>
-          <td tabindex="0">{{img.name}}</td>
-          <td tabindex="0">{{img.approvalStatus}}</td>     
-          <td tabindex="0">{{img.dateOfBirth}}</td>
-          <td tabindex="0">{{img.address}}</td>                    
+          <td tabindex="0" class="align-middle">{{img.uniqueCode}}</td>
+          <td tabindex="0" class="align-middle">{{img.emailStatus}}</td>
+          <td tabindex="0" class="align-middle">{{img.uploadedDate}}</td>
+          <td tabindex="0" class="align-middle">{{img.name}}</td>
+          <td tabindex="0" [class.text-danger]="isRejected(img)" [class.text-success]="isApproved(img)" class="align-middle">{{img.approvalStatus}}</td>     
+          <td tabindex="0" class="align-middle">{{img.dateOfBirth}}</td>
+          <td tabindex="0" class="align-middle">{{img.address}}</td>                    
         </tr>
       </tbody>
     </table>    
-    <div *ngIf="images.length === 0" class="jumbotron">
+    <div *ngIf="loading" class="text-center" >
+        <svg width="350px"  height="350px"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" class="lds-rolling" style="background: none;">
+          <circle cx="50" cy="50" fill="none"  stroke="#49a4de" stroke-width="10" r="35" stroke-dasharray="164.93361431346415 56.97787143782138" transform="rotate(280.388 50 50)">
+            <animateTransform attributeName="transform" type="rotate" calcMode="linear" values="0 50 50;360 50 50" keyTimes="0;1" dur="0.3s" begin="0s" repeatCount="indefinite"></animateTransform>
+        </circle>
+        </svg>
+    </div>
+    <div *ngIf="images.length === 0 && !loading" class="jumbotron">      
         <h1 class="display-4">No Results</h1>
         <p class="lead">You currently have no images to review. Please refine your search.</p>
         <hr class="my-4">
