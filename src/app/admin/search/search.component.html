@@ -11,6 +11,7 @@
   <div class="form-inline search-box">
     <div class="like-google">
         <input class="form-control pull-left" type="text" placeholder="search for a submission" aria-label="Search" [(ngModel)]="query" (keyup.enter)="onSearch(query)" appAutofocus>
+        <button class="btn btn-outline-success" type="button"  (click)="onSearch(query)">Search</button>        
     </div>
 
   </div>    
